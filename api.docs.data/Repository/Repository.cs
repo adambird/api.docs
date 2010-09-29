@@ -5,7 +5,7 @@ using System.Linq;
 namespace api.docs.data.Repository
 {
     public class Repository<T> : IRepository<T>
-        where T : class, new()
+        where T : class, IModel, new()
     {
         protected readonly ApiDocsContext Context;
 
@@ -21,7 +21,7 @@ namespace api.docs.data.Repository
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            return FindSingle(t => t.Id == id);
         }
 
         public void SaveOrUpdate(T model)
@@ -41,12 +41,12 @@ namespace api.docs.data.Repository
 
         public void Delete(T model)
         {
-            throw new NotImplementedException();
+            Context.Set<T>().Remove(model);
         }
 
         public void DeleteById(int id)
         {
-            throw new NotImplementedException();
+            Delete(GetById(id));
         }
 
         public IList<T> GetAll()

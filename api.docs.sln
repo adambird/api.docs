@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api.docs.data", "api.docs.d
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api.docs.admin", "api.docs.admin\api.docs.admin.csproj", "{3A1A1F13-39B8-4F4F-A4A4-F55B87482A23}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api.docs.data.integrationtest", "api.docs.data.integrationtest\api.docs.data.integrationtest.csproj", "{0EE607CB-4518-4015-A5B1-74C0E0CBC287}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{3A1A1F13-39B8-4F4F-A4A4-F55B87482A23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A1A1F13-39B8-4F4F-A4A4-F55B87482A23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A1A1F13-39B8-4F4F-A4A4-F55B87482A23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EE607CB-4518-4015-A5B1-74C0E0CBC287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EE607CB-4518-4015-A5B1-74C0E0CBC287}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EE607CB-4518-4015-A5B1-74C0E0CBC287}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EE607CB-4518-4015-A5B1-74C0E0CBC287}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

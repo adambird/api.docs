@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace api.docs.data.Repository
 {
     public interface IRepository<T> : IDisposable
-        where T : new()
+        where T : class, IModel, new()
     {
         T GetById(int id);
         void SaveOrUpdate(T model);

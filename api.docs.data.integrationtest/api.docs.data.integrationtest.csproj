@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6D031736-338C-4C50-AB16-A5072900BE60}</ProjectGuid>
+    <ProjectGuid>{0EE607CB-4518-4015-A5B1-74C0E0CBC287}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>api.docs.data</RootNamespace>
-    <AssemblyName>api.docs.data</AssemblyName>
+    <RootNamespace>api.docs.data.integrationtest</RootNamespace>
+    <AssemblyName>api.docs.data.integrationtest</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,11 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Data.Entity.CTP, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="nunit.framework, Version=2.5.5.10112, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,25 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiDocsContext.cs" />
-    <Compile Include="Map\ResourceDocMap.cs" />
-    <Compile Include="Map\ResourceMap.cs" />
+    <Compile Include="ResourceRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\IModel.cs" />
-    <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Repository\QueryBase.cs" />
-    <Compile Include="Repository\Repository.cs" />
-    <Compile Include="Repository\ResourceRepository.cs" />
-    <Compile Include="Resource.cs" />
-    <Compile Include="ResourceDoc.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Content Include="sql\deltas\001_CreateResourceTables.sql" />
-    <Content Include="sql\initialise_db.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="sql\deploy.build" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\api.docs.data\api.docs.data.csproj">
+      <Project>{6D031736-338C-4C50-AB16-A5072900BE60}</Project>
+      <Name>api.docs.data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

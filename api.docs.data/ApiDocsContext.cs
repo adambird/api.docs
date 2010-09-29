@@ -25,8 +25,10 @@ namespace api.docs.data
         protected override void OnModelCreating(System.Data.Entity.ModelConfiguration.ModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new ResourceMap());
+            modelBuilder.Configurations.Add(new ResourceDocMap());
         }
 
         public DbSet<Resource> Resources { get; set; }
+        public DbSet<ResourceDoc> ResourceDocs { get; set; }
     }
 }
