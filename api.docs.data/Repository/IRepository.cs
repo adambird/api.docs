@@ -7,7 +7,6 @@ namespace api.docs.data.Repository
         where T : class, IModel, new()
     {
         T GetById(int id);
-        void SaveOrUpdate(T model);
         void Add(T model);
         void SaveChanges();
         void Delete(T model);

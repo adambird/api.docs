@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using api.docs.admin.Models;
 using api.docs.data.Repository;
 
 namespace api.docs.admin.Controllers
@@ -16,7 +17,7 @@ namespace api.docs.admin.Controllers
         {
             using (var repository = new ResourceRepository())
             {
-                return View(repository.GetAll());
+                return View(repository.GetAll().ToViewModelList());
             }
         }
 
@@ -27,7 +28,7 @@ namespace api.docs.admin.Controllers
         {
             using (var repository = new ResourceRepository())
             {
-                return View(repository.GetById(id));
+                return View(repository.GetById(id).ToViewModel());
             }
         }
 
@@ -43,17 +44,27 @@ namespace api.docs.admin.Controllers
         // POST: /Resource/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ResourceViewModel viewModel)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    using (var repository = new ResourceRepository())
+                    {
+                        repository.Add(viewModel.ToModel());
+                        repository.SaveChanges();
+                    }
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(viewModel);
+                }
             }
             catch
             {
-                return View();
+                return View(viewModel);
             }
         }
         
@@ -62,20 +73,34 @@ namespace api.docs.admin.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View();
+            using (var repository = new ResourceRepository())
+            {
+                return View(repository.GetById(id).ToViewModel());
+            }
         }
 
         //
         // POST: /Resource/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(ResourceViewModel viewModel)
         {
             try
             {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    using (var repository = new ResourceRepository())
+                    {
+                        var resource = repository.GetById(viewModel.Id);
+                        resource.Name = viewModel.Name;
+                        repository.SaveChanges();
+                    }
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(viewModel);
+                }
             }
             catch
             {
@@ -88,19 +113,25 @@ namespace api.docs.admin.Controllers
  
         public ActionResult Delete(int id)
         {
-            return View();
+            using (var repository = new ResourceRepository())
+            {
+                return View(repository.GetById(id).ToViewModel());
+            }
         }
 
         //
         // POST: /Resource/Delete/5
 
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(ResourceViewModel viewModel)
         {
             try
             {
-                // TODO: Add delete logic here
- 
+                using (var repository = new ResourceRepository())
+                {
+                    repository.Delete(viewModel.ToModel());
+                    repository.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
             catch

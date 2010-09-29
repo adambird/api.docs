@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<api.docs.data.Resource>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<api.docs.admin.Models.ResourceViewModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Edit
@@ -13,14 +13,6 @@
         
         <fieldset>
             <legend>Fields</legend>
-            
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.Id) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Id) %>
-                <%: Html.ValidationMessageFor(model => model.Id) %>
-            </div>
             
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.Name) %>

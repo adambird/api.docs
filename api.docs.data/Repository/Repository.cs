@@ -24,11 +24,6 @@ namespace api.docs.data.Repository
             return FindSingle(t => t.Id == id);
         }
 
-        public void SaveOrUpdate(T model)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Add(T model)
         {
             Context.Set<T>().Add(model);

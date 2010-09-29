@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<api.docs.data.Resource>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<api.docs.admin.Models.ResourceViewModel>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Resources
@@ -9,9 +9,9 @@
     <h2>Resources</h2>
     
     <ul>
-    <% foreach (var resource in Model)
+    <% foreach (var model in Model)
        {%>
-       <li><%= Html.ActionLink(resource.Name, "Details", new {id = resource.Id}) %></li>
+       <li><%= Html.ActionLink(model.Name, "Details", new {id = model.Id}) %></li>
     <%
        }%>
     </ul>
