@@ -13,5 +13,14 @@ namespace api.docs.admin.Models
         [Required()]
         [StringLength(100)]
         public string Name { get; set; }
+
+        public IList<ResourceDocViewModel> ResourceDocs { get; set; }
+
+        public ResourceDocViewModel NewDoc { get; set; }
+
+        public ResourceViewModel()
+        {
+            NewDoc = new ResourceDocViewModel();
+        }
     }
 }

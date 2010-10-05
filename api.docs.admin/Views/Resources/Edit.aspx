@@ -29,8 +29,37 @@
 
     <% } %>
 
+    <h3>Add Documentation</h3>
+    <% using (Html.BeginForm("CreateResourceDoc", "Resources", FormMethod.Post, new { id = "createResourceDocForm" }))
+       {%>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.NewDoc.Language) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.NewDoc.Language) %>
+            <%: Html.ValidationMessageFor(model => model.NewDoc.Language) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.NewDoc.Region) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextBoxFor(model => model.NewDoc.Region) %>
+            <%: Html.ValidationMessageFor(model => model.NewDoc.Region) %>
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.NewDoc.Summary) %>
+        </div>
+        <div class="editor-field">
+            <%: Html.TextAreaFor(model => model.NewDoc.Summary) %>
+            <%: Html.ValidationMessageFor(model => model.NewDoc.Summary)%>
+        </div>
+        <p>
+            <%: Html.HiddenFor(model => model.Id) %>
+            <input type="submit" value="Add" />
+        </p>
+    <%}%>
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <%: Html.ActionLink("Back to List", "Index")%>
     </div>
 
 </asp:Content>

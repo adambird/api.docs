@@ -37,7 +37,11 @@ namespace api.docs.admin.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            var viewModel = new ResourceViewModel();
+            viewModel.ResourceDocs = new List<ResourceDocViewModel>();
+            viewModel.ResourceDocs.Add(new ResourceDocViewModel());
+
+            return View(viewModel);
         } 
 
         //
@@ -138,6 +142,26 @@ namespace api.docs.admin.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpPost]
+        public ActionResult CreateResourceDoc(ResourceViewModel viewModel)
+        {
+            //if (ModelState.IsValid)
+            //{
+                using (var repository = new ResourceRepository())
+                {
+                    var resource = repository.GetById(viewModel.Id);
+                    resource.ResourceDocs.Add(viewModel.NewDoc.ToModel());
+                    repository.SaveChanges();
+                }
+                return RedirectToAction("Edit", new { id = viewModel.Id });
+            //}
+            //else
+            //{
+            //    return View("Edit", viewModel);
+            //}
+
         }
     }
 }

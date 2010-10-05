@@ -17,7 +17,11 @@ namespace api.docs.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            return View();
+            using (var repository = new ResourceRepository())
+            {
+                var model = repository.GetById(id);
+                return View(model);
+            }
         }
     }
 }

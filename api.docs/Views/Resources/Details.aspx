@@ -6,6 +6,18 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2><%: Model.Name %></h2>
+    <h2><%:Model.Name%></h2>
 
+    <%
+            foreach (var doc in Model.ResourceDocs)
+            {
+%>
+        <div id="doc-<%:doc.CultureString%>">
+            <p>
+                <%:doc.Summary%>
+            </p>
+        </div>
+    <%
+            }
+    %>
 </asp:Content>

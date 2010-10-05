@@ -8,5 +8,10 @@ namespace api.docs.data
         public int Id { get; set; }
         public string Name { get; set; }
         public IList<ResourceDoc> ResourceDocs { get; set; }
+
+        public Resource()
+        {
+            ResourceDocs = new List<ResourceDoc>();
+        }
     }
 }

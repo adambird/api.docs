@@ -18,7 +18,7 @@ namespace api.docs.data.integrationtest
         [TearDown]
         public void TearDown()
         {
-            //Purge();
+            Purge();
         }
 
         private void Purge()

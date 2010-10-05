@@ -22,7 +22,31 @@
                 <%: Html.ValidationMessageFor(model => model.Name) %>
             </div>
             
-            <p>
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.ResourceDocs[0].Language) %>
+            </div>
+            <div class="editor-field">
+                <%: Html.TextBoxFor(model => model.ResourceDocs[0].Language)%>
+                <%: Html.ValidationMessageFor(model => model.ResourceDocs[0].Language)%>
+            </div>
+
+             <div class="editor-label">
+                <%: Html.LabelFor(model => model.ResourceDocs[0].Region) %>
+            </div>
+            <div class="editor-field">
+                <%: Html.TextBoxFor(model => model.ResourceDocs[0].Region)%>
+                <%: Html.ValidationMessageFor(model => model.ResourceDocs[0].Region)%>
+            </div>
+
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.ResourceDocs[0].Summary) %>
+            </div>
+            <div class="editor-field">
+                <%: Html.TextAreaFor(model => model.ResourceDocs[0].Summary)%>
+                <%: Html.ValidationMessageFor(model => model.ResourceDocs[0].Summary)%>
+            </div>
+
+           <p>
                 <input type="submit" value="Create" />
             </p>
         </fieldset>

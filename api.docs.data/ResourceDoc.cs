@@ -9,6 +9,9 @@ namespace api.docs.data
         public string Language { get; set; }
         public string Region { get; set; }
         public string Summary { get; set; }
-        //public Resource Resource { get; set; }
+        public string CultureString
+        {
+            get { return Region == null ? Language : string.Format("{0}-{1}", Language, Region); }   
+        }
     }
 }
