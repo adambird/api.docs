@@ -1,52 +1,68 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using NHibernate;
+using NHibernate.Linq;
 
 namespace api.docs.data.Repository
 {
     public class Repository<T> : IRepository<T>
-        where T : class, IModel, new()
+        where T : Entity, new()
     {
-        protected readonly ApiDocsContext Context;
+        private ISession _session;
 
         protected Repository()
         {
-            Context = new ApiDocsContext();
-        }
+        }   
 
         public void Dispose()
         {
-            Context.Dispose();
+            if (_session != null) _session.Dispose();
+            _session = null;
         }
 
-        public T GetById(int id)
+        private ISession GetSession()
+        {
+            if (_session == null)
+            {
+                _session = ApiDocsDb.SessionFactory.OpenSession();
+            }
+            return _session;
+        }
+
+        public T GetById(Guid id)
         {
             return FindSingle(t => t.Id == id);
         }
 
         public void Add(T model)
         {
-            Context.Set<T>().Add(model);
+            GetSession().Save(model);
+        }
+
+        public void Save(T model)
+        {
+            GetSession().SaveOrUpdate(model);
         }
 
         public void SaveChanges()
         {
-            Context.SaveChanges();
+            GetSession().Flush();
         }
 
         public void Delete(T model)
         {
-            Context.Set<T>().Remove(model);
+            GetSession().Delete(model);
         }
 
-        public void DeleteById(int id)
+        public void DeleteById(Guid id)
         {
             Delete(GetById(id));
         }
 
         public IList<T> GetAll()
         {
-            return Context.Set<T>().ToList();
+            return GetSession().Query<T>().ToList();
         }
 
         public IList<T> GetList(QueryBase<T> query)
@@ -56,7 +72,7 @@ namespace api.docs.data.Repository
 
         public T FindSingle(Func<T, bool> predicate)
         {
-            return Context.Set<T>().SingleOrDefault(predicate);
+            return GetSession().Query<T>().SingleOrDefault(predicate);
         }
 
         public IList<T> Find(Func<T, bool> predicate)

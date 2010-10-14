@@ -8,8 +8,7 @@ namespace api.docs.admin.Models
 {
     public class ResourceDocViewModel
     {
-        public int Id { get; set; }
-        public int ResourceId { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public string Language { get; set; }
@@ -18,5 +17,7 @@ namespace api.docs.admin.Models
         [Required]
         [StringLength(1000)]
         public string Summary { get; set; }
+
+        public string CultureString { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace api.docs.Controllers
 
             using (var resourcesRepository = new ResourceRepository())
             {
-                model.Resources = resourcesRepository.GetAll();
+                model.Resources = resourcesRepository.GetAll().ToViewModelList();
             }
 
             return View(model);

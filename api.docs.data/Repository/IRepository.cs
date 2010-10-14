@@ -4,13 +4,14 @@ using System.Collections.Generic;
 namespace api.docs.data.Repository
 {
     public interface IRepository<T> : IDisposable
-        where T : class, IModel, new()
+        where T : Entity, new()
     {
-        T GetById(int id);
+        T GetById(Guid id);
         void Add(T model);
+        void Save(T model);
         void SaveChanges();
         void Delete(T model);
-        void DeleteById(int id);
+        void DeleteById(Guid id);
         IList<T> GetAll();
         IList<T> GetList(QueryBase<T> query);
         T FindSingle(Func<T, bool> predicate);

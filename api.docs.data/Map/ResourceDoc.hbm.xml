@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="api.docs.data" namespace="api.docs.data">
+  <class name="ResourceDoc" table="ResourceDocs">
+    <id name="Id">
+      <generator class="guid.comb"/>
+    </id>
+    <version name="Version"/>
+    <property name="Language" not-null="true"/>
+    <property name="Region"/>
+    <property name="Summary"/>
+  </class>
+</hibernate-mapping>

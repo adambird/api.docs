@@ -29,7 +29,7 @@
 
     <% } %>
 
-    <h3>Add Documentation</h3>
+    <h3>Documentation</h3>
     <% using (Html.BeginForm("CreateResourceDoc", "Resources", FormMethod.Post, new { id = "createResourceDocForm" }))
        {%>
         <div class="editor-label">
@@ -58,6 +58,17 @@
             <input type="submit" value="Add" />
         </p>
     <%}%>
+    <%
+       foreach (var doc in Model.ResourceDocs)
+       {%>
+       <div>
+        <h4><%: doc.CultureString %></h4>
+        <p>
+            <%: doc.Summary %>
+        </p>
+        </div>
+    <%
+       }%>
     <div>
         <%: Html.ActionLink("Back to List", "Index")%>
     </div>

@@ -5,6 +5,6 @@ namespace api.docs.Models
 {
     public class HomePageViewModel
     {
-        public IList<Resource> Resources { get; set; }
+        public IList<ResourceViewModel> Resources { get; set; }
     }
 }

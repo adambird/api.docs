@@ -18,7 +18,7 @@ namespace api.docs.data.integrationtest
         [TearDown]
         public void TearDown()
         {
-            Purge();
+            //Purge();
         }
 
         private void Purge()
@@ -26,7 +26,7 @@ namespace api.docs.data.integrationtest
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["api.docs.data"].ConnectionString))
             {
                 connection.Open();
-                using (var command = new SqlCommand("TRUNCATE TABLE Resource_Docs", connection))
+                using (var command = new SqlCommand("TRUNCATE TABLE ResourceDocs", connection))
                 {
                     command.ExecuteNonQuery();
                 }
@@ -79,14 +79,14 @@ namespace api.docs.data.integrationtest
                     }
                 }
 
-                using (var command = new SqlCommand("SELECT Id, ResourceId, Language, Region, Summary FROM Resource_Docs", connection))
+                using (var command = new SqlCommand("SELECT Id, ResourceId, Language, Region, Summary FROM ResourceDocs", connection))
                 {
                     using (var reader = command.ExecuteReader())
                     {
                         int i = 0;
                         while (reader.Read())
                         {
-                            Assert.AreEqual(resource.Id, reader.GetInt32(1));
+                            Assert.AreEqual(resource.Id, reader.GetGuid(1));
                             Assert.AreEqual(resource.ResourceDocs[i].Language, reader.GetString(2));
                             if (resource.ResourceDocs[i].Region == null)
                             {
@@ -189,11 +189,11 @@ namespace api.docs.data.integrationtest
                     }
                 }
 
-                using (var command = new SqlCommand("SELECT Id, ResourceId, Language, Region, Summary FROM Resource_Docs", connection))
+                using (var command = new SqlCommand("SELECT Id, ResourceId, Language, Region, Summary FROM ResourceDocs", connection))
                 {
                     using (var reader = command.ExecuteReader())
                     {
-                        Assert.IsFalse(reader.Read(), "Resource_Docs table");
+                        Assert.IsFalse(reader.Read(), "Docs table");
                     }
                 }
             }
@@ -229,6 +229,7 @@ namespace api.docs.data.integrationtest
                 repository.SaveChanges();
                 resource.Name = "NewName";
                 resource.ResourceDocs[1].Summary = "New Summary for New Name";
+                repository.Save(resource);
                 repository.SaveChanges();
             }
 
@@ -245,14 +246,14 @@ namespace api.docs.data.integrationtest
                     }
                 }
 
-                using (var command = new SqlCommand("SELECT Id, ResourceId, Language, Region, Summary FROM Resource_Docs", connection))
+                using (var command = new SqlCommand("SELECT Id, ResourceId, Language, Region, Summary FROM ResourceDocs", connection))
                 {
                     using (var reader = command.ExecuteReader())
                     {
                         int i = 0;
                         while (reader.Read())
                         {
-                            Assert.AreEqual(resource.Id, reader.GetInt32(1));
+                            Assert.AreEqual(resource.Id, reader.GetGuid(1));
                             Assert.AreEqual(resource.ResourceDocs[i].Language, reader.GetString(2));
                             if (resource.ResourceDocs[i].Region == null)
                             {
@@ -270,5 +271,6 @@ namespace api.docs.data.integrationtest
                 }
             }
         }
+
     }
 }

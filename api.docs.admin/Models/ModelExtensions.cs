@@ -6,14 +6,9 @@ namespace api.docs.admin.Models
 {
     public static class ModelExtensions
     {
-        public static Resource ToModel(this ResourceViewModel viewModel)
+        public static void MapOntoModel(this ResourceViewModel viewModel, Resource model)
         {
-            return new Resource()
-                       {
-                           Id = viewModel.Id,
-                           Name = viewModel.Name,
-                           ResourceDocs = viewModel.ResourceDocs.ToModelList()
-                       };
+            model.Name = viewModel.Name;
         }
 
         public static IList<ResourceViewModel> ToViewModelList(this IEnumerable<Resource> models)
@@ -31,21 +26,11 @@ namespace api.docs.admin.Models
                        };
         }
 
-        public static ResourceDoc ToModel(this ResourceDocViewModel viewModel)
+        public static void MapOntoModel(this ResourceDocViewModel viewModel, ResourceDoc model)
         {
-            return new ResourceDoc()
-                       {
-                           Id = viewModel.Id,
-                           ResourceId = viewModel.ResourceId,
-                           Language = viewModel.Language,
-                           Region = viewModel.Region,
-                           Summary = viewModel.Summary
-                       };
-        }
-
-        public static IList<ResourceDoc> ToModelList(this IEnumerable<ResourceDocViewModel> models)
-        {
-            return models.Select(model => model.ToModel()).ToList();
+            model.Language = viewModel.Language;
+            model.Region = viewModel.Region;
+            model.Summary = viewModel.Summary;
         }
 
         public static ResourceDocViewModel ToViewModel(this ResourceDoc model)
@@ -53,10 +38,10 @@ namespace api.docs.admin.Models
             return new ResourceDocViewModel()
                        {
                            Id = model.Id,
-                           ResourceId = model.ResourceId,
                            Language = model.Language,
                            Region = model.Region,
-                           Summary = model.Summary
+                           Summary = model.Summary,
+                           CultureString = model.CultureString
                        };
         }
 

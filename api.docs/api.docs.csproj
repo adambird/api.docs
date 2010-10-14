@@ -71,6 +71,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\HomePageViewModel.cs" />
+    <Compile Include="Models\ModelExtensions.cs" />
+    <Compile Include="Models\ResourceDocViewModel.cs" />
+    <Compile Include="Models\ResourceViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

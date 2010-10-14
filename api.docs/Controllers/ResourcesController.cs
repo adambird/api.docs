@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using api.docs.data.Repository;
+using api.docs.Models;
 
 namespace api.docs.Controllers
 {
@@ -15,12 +17,12 @@ namespace api.docs.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
             using (var repository = new ResourceRepository())
             {
                 var model = repository.GetById(id);
-                return View(model);
+                return View(model.ToViewModel());
             }
         }
     }

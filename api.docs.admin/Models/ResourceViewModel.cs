@@ -8,7 +8,7 @@ namespace api.docs.admin.Models
 {
     public class ResourceViewModel
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required()]
         [StringLength(100)]

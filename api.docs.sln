@@ -9,6 +9,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api.docs.admin", "api.docs.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api.docs.data.integrationtest", "api.docs.data.integrationtest\api.docs.data.integrationtest.csproj", "{0EE607CB-4518-4015-A5B1-74C0E0CBC287}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api.docs.admin.integrationtest", "api.docs.admin.integrationtest\api.docs.admin.integrationtest.csproj", "{A1338E0B-40FF-4682-8F05-A65A6B6FE461}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schema", "Schema", "{FF0EB91C-A167-436D-BA8B-21BFF1B22D4E}"
+	ProjectSection(SolutionItems) = preProject
+		lib\nhibernate-configuration.xsd = lib\nhibernate-configuration.xsd
+		lib\nhibernate-mapping.xsd = lib\nhibernate-mapping.xsd
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +39,10 @@ Global
 		{0EE607CB-4518-4015-A5B1-74C0E0CBC287}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EE607CB-4518-4015-A5B1-74C0E0CBC287}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EE607CB-4518-4015-A5B1-74C0E0CBC287}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1338E0B-40FF-4682-8F05-A65A6B6FE461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1338E0B-40FF-4682-8F05-A65A6B6FE461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1338E0B-40FF-4682-8F05-A65A6B6FE461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1338E0B-40FF-4682-8F05-A65A6B6FE461}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

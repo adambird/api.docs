@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using api.docs.admin.Models;
+using api.docs.data;
 using api.docs.data.Repository;
 
 namespace api.docs.admin.Controllers
@@ -24,7 +25,7 @@ namespace api.docs.admin.Controllers
         //
         // GET: /Resource/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
             using (var repository = new ResourceRepository())
             {
@@ -56,7 +57,9 @@ namespace api.docs.admin.Controllers
                 {
                     using (var repository = new ResourceRepository())
                     {
-                        repository.Add(viewModel.ToModel());
+                        var model = new Resource();
+                        viewModel.MapOntoModel(model);
+                        repository.Add(model);
                         repository.SaveChanges();
                     }
                     return RedirectToAction("Index");
@@ -75,7 +78,7 @@ namespace api.docs.admin.Controllers
         //
         // GET: /Resource/Edit/5
  
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
             using (var repository = new ResourceRepository())
             {
@@ -96,7 +99,8 @@ namespace api.docs.admin.Controllers
                     using (var repository = new ResourceRepository())
                     {
                         var resource = repository.GetById(viewModel.Id);
-                        resource.Name = viewModel.Name;
+                        viewModel.MapOntoModel(resource);
+                        repository.Save(resource);
                         repository.SaveChanges();
                     }
                     return RedirectToAction("Index");
@@ -115,7 +119,7 @@ namespace api.docs.admin.Controllers
         //
         // GET: /Resource/Delete/5
  
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
             using (var repository = new ResourceRepository())
             {
@@ -133,7 +137,7 @@ namespace api.docs.admin.Controllers
             {
                 using (var repository = new ResourceRepository())
                 {
-                    repository.Delete(viewModel.ToModel());
+                    repository.DeleteById(viewModel.Id);
                     repository.SaveChanges();
                 }
                 return RedirectToAction("Index");
@@ -152,7 +156,9 @@ namespace api.docs.admin.Controllers
                 using (var repository = new ResourceRepository())
                 {
                     var resource = repository.GetById(viewModel.Id);
-                    resource.ResourceDocs.Add(viewModel.NewDoc.ToModel());
+                    var doc = new ResourceDoc();
+                    viewModel.NewDoc.MapOntoModel(doc);
+                    resource.ResourceDocs.Add(doc);
                     repository.SaveChanges();
                 }
                 return RedirectToAction("Edit", new { id = viewModel.Id });
@@ -163,5 +169,6 @@ namespace api.docs.admin.Controllers
             //}
 
         }
+
     }
 }
