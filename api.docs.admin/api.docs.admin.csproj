@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ResourceDocsController.cs" />
     <Compile Include="Controllers\ResourcesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -80,6 +81,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\ResourceDocs\Delete.aspx" />
+    <Content Include="Views\ResourceDocs\Edit.aspx" />
     <Content Include="Views\Resources\Create.aspx" />
     <Content Include="Views\Resources\Delete.aspx" />
     <Content Include="Views\Resources\Details.aspx" />

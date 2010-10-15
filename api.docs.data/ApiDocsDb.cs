@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.ByteCode.Castle;
 using NHibernate.Cfg;

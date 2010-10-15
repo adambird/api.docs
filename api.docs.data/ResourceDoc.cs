@@ -13,5 +13,7 @@ namespace api.docs.data
         {
             get { return Region == null ? Language : string.Format("{0}-{1}", Language, Region); }   
         }
+
+        public virtual Resource Resource {get;set;}
     }
 }

@@ -66,6 +66,9 @@
         <p>
             <%: doc.Summary %>
         </p>
+        <p>
+            <%= Html.ActionLink("Edit", "Edit", new { controller = "ResourceDocs", id = doc.Id })%> | <%= Html.ActionLink("Delete", "Delete", new { controller = "ResourceDocs", id = doc.Id })%>
+        </p>
         </div>
     <%
        }%>

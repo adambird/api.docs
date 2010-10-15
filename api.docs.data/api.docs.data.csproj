@@ -34,13 +34,9 @@
     <Reference Include="Castle.Core">
       <HintPath>..\lib\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="FluentNHibernate">
-      <HintPath>..\lib\FluentNHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="log4net">
       <HintPath>..\lib\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Data.Entity.CTP, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
     <Reference Include="NHibernate">
       <HintPath>..\lib\NHibernate.dll</HintPath>
     </Reference>
@@ -62,8 +58,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IModel.cs" />
     <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\IResourceDocRepository.cs" />
+    <Compile Include="Repository\IResourceRepository.cs" />
     <Compile Include="Repository\QueryBase.cs" />
     <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Repository\ResourceDocRepository.cs" />
     <Compile Include="Repository\ResourceRepository.cs" />
     <Compile Include="Resource.cs" />
     <Compile Include="ResourceDoc.cs" />

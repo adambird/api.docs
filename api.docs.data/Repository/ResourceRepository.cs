@@ -5,7 +5,7 @@ using System.Text;
 
 namespace api.docs.data.Repository
 {
-    public class ResourceRepository : Repository<Resource>
+    public class ResourceRepository : Repository<Resource>, IResourceRepository
     {
     }
 }
