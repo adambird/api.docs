@@ -7,7 +7,7 @@
 
 CREATE TABLE [ResourceDocs] (
 	Id uniqueidentifier NOT NULL,
-	ResourceId uniqueidentifier NOT NULL,
+	ResourceId uniqueidentifier NULL,
 	Language varchar(3) NULL,
 	Region varchar(10) NULL,
 	Summary nvarchar(1000) NOT NULL,
@@ -17,5 +17,5 @@ CREATE TABLE [ResourceDocs] (
 
 --//@UNDO
 
-DROP TABLE [Resource_Docs]
+DROP TABLE [ResourceDocs]
 DROP TABLE [Resources]
