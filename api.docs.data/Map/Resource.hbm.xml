@@ -6,7 +6,7 @@
     </id>
     <version name="Version"/>
     <property name="Name" not-null="true"/>
-    <list name="ResourceDocs" cascade="all-delete-orphan">
+    <list name="ResourceDocs" cascade="all" inverse="true">
       <key column="ResourceId"/>
       <index column="DocIndex"/>
       <one-to-many class="ResourceDoc"/>

@@ -227,6 +227,9 @@ namespace api.docs.data.integrationtest
             {
                 repository.Add(resource);
                 repository.SaveChanges();
+
+                resource = repository.GetById(resource.Id);
+                
                 resource.Name = "NewName";
                 resource.ResourceDocs[1].Summary = "New Summary for New Name";
                 repository.Save(resource);

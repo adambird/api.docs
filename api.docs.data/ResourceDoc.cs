@@ -5,7 +5,6 @@ namespace api.docs.data
 {
     public class ResourceDoc : Entity
     {
-        //public virtual Guid ResourceId { get; set; }
         public virtual string Language { get; set; }
         public virtual string Region { get; set; }
         public virtual string Summary { get; set; }

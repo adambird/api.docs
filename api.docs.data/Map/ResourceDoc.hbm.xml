@@ -8,6 +8,6 @@
     <property name="Language" not-null="true"/>
     <property name="Region"/>
     <property name="Summary"/>
-    <many-to-one name="Resource" column="ResourceId"/>
+    <many-to-one name="Resource" column="ResourceId" not-null="true"/>
   </class>
 </hibernate-mapping>
