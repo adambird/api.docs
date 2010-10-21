@@ -26,7 +26,7 @@ namespace api.docs.data
         {
             log4net.Config.XmlConfigurator.Configure();
 
-            var nhConfig = new Configuration()
+            var nhConfig = new NHibernate.Cfg.Configuration()
                 .Proxy(proxy => proxy.ProxyFactoryFactory<ProxyFactoryFactory>())
                 .DataBaseIntegration(db =>
                                          {

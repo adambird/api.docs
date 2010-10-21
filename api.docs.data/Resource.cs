@@ -7,9 +7,9 @@ namespace api.docs.data
     {
         public virtual string Name { get; set; }
 
-        private IList<ResourceDoc> _resourceDocs;
+        private ICollection<ResourceDoc> _resourceDocs;
 
-        public virtual IList<ResourceDoc> ResourceDocs
+        public virtual ICollection<ResourceDoc> ResourceDocs
         {
             get { return _resourceDocs; }
             set
@@ -20,11 +20,6 @@ namespace api.docs.data
                     doc.Resource = this;
                 }
             }
-        }
-
-        public Resource()
-        {
-            //ResourceDocs = new List<ResourceDoc>();
         }
     }
 }

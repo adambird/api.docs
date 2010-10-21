@@ -6,20 +6,26 @@ using System.Web.Mvc;
 using api.docs.admin.Models;
 using api.docs.data;
 using api.docs.data.Repository;
+using Ninject;
 
 namespace api.docs.admin.Controllers
 {
     public class ResourcesController : Controller
     {
+        private readonly IResourceRepository _resourceRepository;
+
+        [Inject]
+        public ResourcesController(IResourceRepository resourceRepository)
+        {
+            _resourceRepository = resourceRepository;
+        }
+        
         //
         // GET: /Resource/
 
         public ActionResult Index()
         {
-            using (var repository = new ResourceRepository())
-            {
-                return View(repository.GetAll().ToViewModelList());
-            }
+            return View(_resourceRepository.GetAll().ToViewModelList());
         }
 
         //
@@ -27,10 +33,7 @@ namespace api.docs.admin.Controllers
 
         public ActionResult Details(Guid id)
         {
-            using (var repository = new ResourceRepository())
-            {
-                return View(repository.GetById(id).ToViewModel());
-            }
+            return View(_resourceRepository.GetById(id).ToViewModel());
         }
 
         //
@@ -38,9 +41,10 @@ namespace api.docs.admin.Controllers
 
         public ActionResult Create()
         {
-            var viewModel = new ResourceViewModel();
-            viewModel.ResourceDocs = new List<ResourceDocViewModel>();
-            viewModel.ResourceDocs.Add(new ResourceDocViewModel());
+            var viewModel = new ResourceViewModel()
+                                {
+                                    ResourceDocs = new List<ResourceDocViewModel>() {new ResourceDocViewModel()}
+                                };
 
             return View(viewModel);
         } 
@@ -55,13 +59,11 @@ namespace api.docs.admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (var repository = new ResourceRepository())
-                    {
-                        var model = new Resource();
-                        viewModel.MapOntoModel(model);
-                        repository.Add(model);
-                        repository.SaveChanges();
-                    }
+                    var model = new Resource();
+                    viewModel.MapOntoModel(ref model);
+                    _resourceRepository.Add(model);
+                    _resourceRepository.SaveChanges();
+
                     return RedirectToAction("Index");
                 }
                 else
@@ -80,10 +82,7 @@ namespace api.docs.admin.Controllers
  
         public ActionResult Edit(Guid id)
         {
-            using (var repository = new ResourceRepository())
-            {
-                return View(repository.GetById(id).ToViewModel());
-            }
+            return View(_resourceRepository.GetById(id).ToViewModel());
         }
 
         //
@@ -96,13 +95,11 @@ namespace api.docs.admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (var repository = new ResourceRepository())
-                    {
-                        var resource = repository.GetById(viewModel.Id);
-                        viewModel.MapOntoModel(resource);
-                        repository.Save(resource);
-                        repository.SaveChanges();
-                    }
+                    var resource = _resourceRepository.GetById(viewModel.Id);
+                    viewModel.MapOntoModel(ref resource);
+                    _resourceRepository.Save(resource);
+                    _resourceRepository.SaveChanges();
+
                     return RedirectToAction("Index");
                 }
                 else
@@ -121,10 +118,7 @@ namespace api.docs.admin.Controllers
  
         public ActionResult Delete(Guid id)
         {
-            using (var repository = new ResourceRepository())
-            {
-                return View(repository.GetById(id).ToViewModel());
-            }
+            return View(_resourceRepository.GetById(id).ToViewModel());
         }
 
         //
@@ -135,11 +129,9 @@ namespace api.docs.admin.Controllers
         {
             try
             {
-                using (var repository = new ResourceRepository())
-                {
-                    repository.DeleteById(viewModel.Id);
-                    repository.SaveChanges();
-                }
+                _resourceRepository.DeleteById(viewModel.Id);
+                _resourceRepository.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             catch
@@ -153,14 +145,12 @@ namespace api.docs.admin.Controllers
         {
             //if (ModelState.IsValid)
             //{
-                using (var repository = new ResourceRepository())
-                {
-                    var resource = repository.GetById(viewModel.Id);
-                    var doc = new ResourceDoc();
-                    viewModel.NewDoc.MapOntoModel(doc);
-                    resource.ResourceDocs.Add(doc);
-                    repository.SaveChanges();
-                }
+                var resource = _resourceRepository.GetById(viewModel.Id);
+                var doc = new ResourceDoc() { Resource = resource };
+                viewModel.NewDoc.MapOntoModel(ref doc);
+                resource.ResourceDocs.Add(doc);
+                _resourceRepository.SaveChanges();
+
                 return RedirectToAction("Edit", new { id = viewModel.Id });
             //}
             //else

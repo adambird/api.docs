@@ -13,16 +13,16 @@
         <legend>Fields</legend>
         
         <div class="display-label">Id</div>
-        <div class="display-field"><%: Model.Id %></div>
+        <div class="display-field"><%= Model.Id %></div>
         
         <div class="display-label">Name</div>
-        <div class="display-field"><%: Model.Name %></div>
+        <div class="display-field"><%= Model.Name %></div>
         
     </fieldset>
     <% using (Html.BeginForm()) { %>
         <p>
 		    <input type="submit" value="Delete" /> |
-		    <%: Html.ActionLink("Back to List", "Index") %>
+		    <%= Html.ActionLink("Back to List", "Index") %>
         </p>
     <% } %>
 

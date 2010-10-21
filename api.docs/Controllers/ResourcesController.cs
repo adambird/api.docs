@@ -2,28 +2,31 @@
 using System.Web.Mvc;
 using api.docs.data.Repository;
 using api.docs.Models;
+using Ninject;
 
 namespace api.docs.Controllers
 {
     public class ResourcesController : Controller
     {
+        private readonly IResourceRepository _resourceRepository;
+
+        [Inject]
+        public ResourcesController(IResourceRepository resourceRepository)
+        {
+            _resourceRepository = resourceRepository;
+        }
+        
         [HttpGet]
         public ActionResult Index()
         {
-            using (var repository = new ResourceRepository())
-            {
-                return View(repository.GetAll());
-            }
+            return View(_resourceRepository.GetAll());
         }
 
         [HttpGet]
         public ActionResult Details(Guid id)
         {
-            using (var repository = new ResourceRepository())
-            {
-                var model = repository.GetById(id);
-                return View(model.ToViewModel());
-            }
+             var model = _resourceRepository.GetById(id);
+             return View(model.ToViewModel());
         }
     }
 }

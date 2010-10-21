@@ -5,11 +5,20 @@ using System.Web;
 using System.Web.Mvc;
 using api.docs.admin.Models;
 using api.docs.data.Repository;
+using Ninject;
 
 namespace api.docs.admin.Controllers
 {
     public class ResourceDocsController : Controller
     {
+        private readonly IResourceDocRepository _resourceDocRepository;
+
+        [Inject]
+        public ResourceDocsController(IResourceDocRepository resourceDocRepository)
+        {
+            _resourceDocRepository = resourceDocRepository;
+        }
+
         //
         // GET: /ResourceDocs/
 
@@ -23,12 +32,9 @@ namespace api.docs.admin.Controllers
  
         public ActionResult Edit(Guid id)
         {
-            using (var repository = new ResourceDocRepository())
-            {
-                var resourceDoc = repository.GetById(id);
-                if (resourceDoc == null) throw new HttpException(404, "");
-                return View(resourceDoc.ToViewModel());
-            }
+            var resourceDoc = _resourceDocRepository.GetById(id);
+            if (resourceDoc == null) throw new HttpException(404, "");
+            return View(resourceDoc.ToViewModel());
         }
 
         //
@@ -41,17 +47,14 @@ namespace api.docs.admin.Controllers
             {
                 try
                 {
-                    using (var repository = new ResourceDocRepository())
-                    {
-                        var resourceDoc = repository.GetById(viewModel.Id);
-                        if (resourceDoc == null) throw new HttpException(404, "");
+                    var resourceDoc = _resourceDocRepository.GetById(viewModel.Id);
+                    if (resourceDoc == null) throw new HttpException(404, "");
 
-                        viewModel.MapOntoModel(resourceDoc);
-                        repository.Save(resourceDoc);
-                        repository.SaveChanges();
+                    viewModel.MapOntoModel(ref resourceDoc);
+                    _resourceDocRepository.Save(resourceDoc);
+                    _resourceDocRepository.SaveChanges();
 
-                        return RedirectToAction("Details", "Resources", new {id = resourceDoc.Resource.Id});
-                    }
+                    return RedirectToAction("Details", "Resources", new {id = resourceDoc.Resource.Id});
                 }
                 catch (HttpException)
                 {
@@ -70,12 +73,9 @@ namespace api.docs.admin.Controllers
  
         public ActionResult Delete(Guid id)
         {
-            using (var repository = new ResourceDocRepository())
-            {
-                var resourceDoc = repository.GetById(id);
-                if (resourceDoc == null) throw new HttpException(404, "");
-                return View(resourceDoc.ToViewModel());
-            }
+            var resourceDoc = _resourceDocRepository.GetById(id);
+            if (resourceDoc == null) throw new HttpException(404, "");
+            return View(resourceDoc.ToViewModel());
         }
 
         //
@@ -86,17 +86,14 @@ namespace api.docs.admin.Controllers
         {
             try
             {
-                using (var repository = new ResourceDocRepository())
-                {
-                    var resourceDoc = repository.GetById(viewModel.Id);
-                    if (resourceDoc == null) throw new HttpException(404, "");
+                var resourceDoc = _resourceDocRepository.GetById(viewModel.Id);
+                if (resourceDoc == null) throw new HttpException(404, "");
 
-                    repository.DeleteById(resourceDoc.Id);
+                _resourceDocRepository.DeleteById(resourceDoc.Id);
 
-                    repository.SaveChanges();
+                _resourceDocRepository.SaveChanges();
 
-                    return RedirectToAction("Details", "Resources", new { id = resourceDoc.Resource.Id });
-                }
+                return RedirectToAction("Details", "Resources", new { id = resourceDoc.Resource.Id });
             }
             catch (HttpException)
             {

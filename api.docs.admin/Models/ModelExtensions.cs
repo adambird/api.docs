@@ -6,7 +6,7 @@ namespace api.docs.admin.Models
 {
     public static class ModelExtensions
     {
-        public static void MapOntoModel(this ResourceViewModel viewModel, Resource model)
+        public static void MapOntoModel(this ResourceViewModel viewModel, ref Resource model)
         {
             model.Name = viewModel.Name;
         }
@@ -26,7 +26,7 @@ namespace api.docs.admin.Models
                        };
         }
 
-        public static void MapOntoModel(this ResourceDocViewModel viewModel, ResourceDoc model)
+        public static void MapOntoModel(this ResourceDocViewModel viewModel, ref ResourceDoc model)
         {
             model.Language = viewModel.Language;
             model.Region = viewModel.Region;

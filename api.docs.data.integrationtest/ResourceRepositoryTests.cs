@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using api.docs.data.Repository;
 using NUnit.Framework;
@@ -86,17 +87,19 @@ namespace api.docs.data.integrationtest
                         int i = 0;
                         while (reader.Read())
                         {
+                            var docs = new List<ResourceDoc>(resource.ResourceDocs);
+
                             Assert.AreEqual(resource.Id, reader.GetGuid(1));
-                            Assert.AreEqual(resource.ResourceDocs[i].Language, reader.GetString(2));
-                            if (resource.ResourceDocs[i].Region == null)
+                            Assert.AreEqual(docs[i].Language, reader.GetString(2));
+                            if (docs[i].Region == null)
                             {
                                 Assert.IsTrue(reader.IsDBNull(3));
                             }
                             else
                             {
-                                Assert.AreEqual(resource.ResourceDocs[i].Region, reader.GetString(3));
+                                Assert.AreEqual(docs[i].Region, reader.GetString(3));
                             }
-                            Assert.AreEqual(resource.ResourceDocs[i].Summary, reader.GetString(4));
+                            Assert.AreEqual(docs[i].Summary, reader.GetString(4));
                             i++;
                         }
                         Assert.AreEqual(i, resource.ResourceDocs.Count);
@@ -137,11 +140,15 @@ namespace api.docs.data.integrationtest
 
                 Assert.AreEqual(resource.Name, actual.Name);
                 Assert.AreEqual(resource.ResourceDocs.Count, actual.ResourceDocs.Count);
-                for (int i = 0; i < resource.ResourceDocs.Count; i++)
+
+                var docs = new List<ResourceDoc>(resource.ResourceDocs);
+                var actualDocs = new List<ResourceDoc>(actual.ResourceDocs);
+
+                for (int i = 0; i < docs.Count; i++)
                 {
-                    Assert.AreEqual(resource.ResourceDocs[i].Language, resource.ResourceDocs[i].Language);
-                    Assert.AreEqual(resource.ResourceDocs[i].Region, resource.ResourceDocs[i].Region);
-                    Assert.AreEqual(resource.ResourceDocs[i].Summary, resource.ResourceDocs[i].Summary);
+                    Assert.AreEqual(docs[i].Language, actualDocs[i].Language);
+                    Assert.AreEqual(docs[i].Region, actualDocs[i].Region);
+                    Assert.AreEqual(docs[i].Summary, actualDocs[i].Summary);
                 }
             }
         }
@@ -223,6 +230,8 @@ namespace api.docs.data.integrationtest
                                               }
             };
 
+            var docs = new List<ResourceDoc>(resource.ResourceDocs);
+
             using (var repository = new ResourceRepository())
             {
                 repository.Add(resource);
@@ -231,7 +240,7 @@ namespace api.docs.data.integrationtest
                 resource = repository.GetById(resource.Id);
                 
                 resource.Name = "NewName";
-                resource.ResourceDocs[1].Summary = "New Summary for New Name";
+                docs[1].Summary = "New Summary for New Name";
                 repository.Save(resource);
                 repository.SaveChanges();
             }
@@ -257,16 +266,16 @@ namespace api.docs.data.integrationtest
                         while (reader.Read())
                         {
                             Assert.AreEqual(resource.Id, reader.GetGuid(1));
-                            Assert.AreEqual(resource.ResourceDocs[i].Language, reader.GetString(2));
-                            if (resource.ResourceDocs[i].Region == null)
+                            Assert.AreEqual(docs[i].Language, reader.GetString(2));
+                            if (docs[i].Region == null)
                             {
                                 Assert.IsTrue(reader.IsDBNull(3));
                             }
                             else
                             {
-                                Assert.AreEqual(resource.ResourceDocs[i].Region, reader.GetString(3));
+                                Assert.AreEqual(docs[i].Region, reader.GetString(3));
                             }
-                            Assert.AreEqual(resource.ResourceDocs[i].Summary, reader.GetString(4));
+                            Assert.AreEqual(docs[i].Summary, reader.GetString(4));
                             i++;
                         }
                         Assert.AreEqual(i, resource.ResourceDocs.Count);

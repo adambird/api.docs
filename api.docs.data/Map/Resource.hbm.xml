@@ -6,10 +6,9 @@
     </id>
     <version name="Version"/>
     <property name="Name" not-null="true"/>
-    <list name="ResourceDocs" cascade="all" inverse="true">
+    <set name="ResourceDocs" cascade="all" inverse="true">
       <key column="ResourceId"/>
-      <index column="DocIndex"/>
       <one-to-many class="ResourceDoc"/>
-    </list>
+    </set>
   </class>
 </hibernate-mapping>

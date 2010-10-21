@@ -9,41 +9,41 @@
     <h2>Create</h2>
 
     <% using (Html.BeginForm()) {%>
-        <%: Html.ValidationSummary(true) %>
+        <%= Html.ValidationSummary(true) %>
 
         <fieldset>
             <legend>Fields</legend>
 
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.Name) %>
+                <%= Html.LabelFor(model => model.Name) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Name) %>
-                <%: Html.ValidationMessageFor(model => model.Name) %>
+                <%= Html.TextBoxFor(model => model.Name) %>
+                <%= Html.ValidationMessageFor(model => model.Name) %>
             </div>
             
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.ResourceDocs[0].Language) %>
+                <%= Html.LabelFor(model => model.ResourceDocs[0].Language) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.ResourceDocs[0].Language)%>
-                <%: Html.ValidationMessageFor(model => model.ResourceDocs[0].Language)%>
+                <%= Html.TextBoxFor(model => model.ResourceDocs[0].Language)%>
+                <%= Html.ValidationMessageFor(model => model.ResourceDocs[0].Language)%>
             </div>
 
              <div class="editor-label">
-                <%: Html.LabelFor(model => model.ResourceDocs[0].Region) %>
+                <%= Html.LabelFor(model => model.ResourceDocs[0].Region) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.ResourceDocs[0].Region)%>
-                <%: Html.ValidationMessageFor(model => model.ResourceDocs[0].Region)%>
+                <%= Html.TextBoxFor(model => model.ResourceDocs[0].Region)%>
+                <%= Html.ValidationMessageFor(model => model.ResourceDocs[0].Region)%>
             </div>
 
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.ResourceDocs[0].Summary) %>
+                <%= Html.LabelFor(model => model.ResourceDocs[0].Summary) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextAreaFor(model => model.ResourceDocs[0].Summary)%>
-                <%: Html.ValidationMessageFor(model => model.ResourceDocs[0].Summary)%>
+                <%= Html.TextAreaFor(model => model.ResourceDocs[0].Summary)%>
+                <%= Html.ValidationMessageFor(model => model.ResourceDocs[0].Summary)%>
             </div>
 
            <p>
@@ -54,7 +54,7 @@
     <% } %>
 
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <%= Html.ActionLink("Back to List", "Index") %>
     </div>
 
 </asp:Content>

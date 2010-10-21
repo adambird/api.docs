@@ -9,17 +9,17 @@
     <h2>Edit</h2>
 
     <% using (Html.BeginForm()) {%>
-        <%: Html.ValidationSummary(true) %>
+        <%= Html.ValidationSummary(true) %>
         
         <fieldset>
             <legend>Fields</legend>
             
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.Name) %>
+                <%= Html.LabelFor(model => model.Name) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Name) %>
-                <%: Html.ValidationMessageFor(model => model.Name) %>
+                <%= Html.TextBoxFor(model => model.Name) %>
+                <%= Html.ValidationMessageFor(model => model.Name) %>
             </div>
             
             <p>
@@ -33,28 +33,28 @@
     <% using (Html.BeginForm("CreateResourceDoc", "Resources", FormMethod.Post, new { id = "createResourceDocForm" }))
        {%>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.NewDoc.Language) %>
+            <%= Html.LabelFor(model => model.NewDoc.Language) %>
         </div>
         <div class="editor-field">
-            <%: Html.TextBoxFor(model => model.NewDoc.Language) %>
-            <%: Html.ValidationMessageFor(model => model.NewDoc.Language) %>
+            <%= Html.TextBoxFor(model => model.NewDoc.Language) %>
+            <%= Html.ValidationMessageFor(model => model.NewDoc.Language) %>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.NewDoc.Region) %>
+            <%= Html.LabelFor(model => model.NewDoc.Region) %>
         </div>
         <div class="editor-field">
-            <%: Html.TextBoxFor(model => model.NewDoc.Region) %>
-            <%: Html.ValidationMessageFor(model => model.NewDoc.Region) %>
+            <%= Html.TextBoxFor(model => model.NewDoc.Region) %>
+            <%= Html.ValidationMessageFor(model => model.NewDoc.Region) %>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.NewDoc.Summary) %>
+            <%= Html.LabelFor(model => model.NewDoc.Summary) %>
         </div>
         <div class="editor-field">
-            <%: Html.TextAreaFor(model => model.NewDoc.Summary) %>
-            <%: Html.ValidationMessageFor(model => model.NewDoc.Summary)%>
+            <%= Html.TextAreaFor(model => model.NewDoc.Summary) %>
+            <%= Html.ValidationMessageFor(model => model.NewDoc.Summary)%>
         </div>
         <p>
-            <%: Html.HiddenFor(model => model.Id) %>
+            <%= Html.HiddenFor(model => model.Id) %>
             <input type="submit" value="Add" />
         </p>
     <%}%>
@@ -62,9 +62,9 @@
        foreach (var doc in Model.ResourceDocs)
        {%>
        <div>
-        <h4><%: doc.CultureString %></h4>
+        <h4><%= doc.CultureString %></h4>
         <p>
-            <%: doc.Summary %>
+            <%= doc.Summary %>
         </p>
         <p>
             <%= Html.ActionLink("Edit", "Edit", new { controller = "ResourceDocs", id = doc.Id })%> | <%= Html.ActionLink("Delete", "Delete", new { controller = "ResourceDocs", id = doc.Id })%>
@@ -73,7 +73,7 @@
     <%
        }%>
     <div>
-        <%: Html.ActionLink("Back to List", "Index")%>
+        <%= Html.ActionLink("Back to List", "Index")%>
     </div>
 
 </asp:Content>

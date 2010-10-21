@@ -12,7 +12,7 @@
     <ul>
         <% foreach (var resource in Model.Resources)
            {%>
-        <li><%: Html.ActionLink(resource.Name, "Details", new { controller = "Resources", id = resource.Id})%></li>
+        <li><%= Html.ActionLink(resource.Name, "Details", new { controller = "Resources", id = resource.Id})%></li>
         <%
            }%>
     </ul>

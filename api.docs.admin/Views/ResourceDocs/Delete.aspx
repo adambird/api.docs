@@ -13,26 +13,26 @@
         <legend>Fields</legend>
         
         <div class="display-label">Id</div>
-        <div class="display-field"><%: Model.Id %></div>
+        <div class="display-field"><%= Model.Id %></div>
         
         <div class="display-label">Language</div>
-        <div class="display-field"><%: Model.Language %></div>
+        <div class="display-field"><%= Model.Language %></div>
         
         <div class="display-label">Region</div>
-        <div class="display-field"><%: Model.Region %></div>
+        <div class="display-field"><%= Model.Region %></div>
         
         <div class="display-label">Summary</div>
-        <div class="display-field"><%: Model.Summary %></div>
+        <div class="display-field"><%= Model.Summary %></div>
         
         <div class="display-label">CultureString</div>
-        <div class="display-field"><%: Model.CultureString %></div>
+        <div class="display-field"><%= Model.CultureString %></div>
         
     </fieldset>
     <% using (Html.BeginForm()) { %>
     <%= Html.HiddenFor(model => model.Id) %>
         <p>
 		    <input type="submit" value="Delete" /> |
-		    <%: Html.ActionLink("Back to List", "Index") %>
+		    <%= Html.ActionLink("Back to List", "Index") %>
         </p>
     <% } %>
 
