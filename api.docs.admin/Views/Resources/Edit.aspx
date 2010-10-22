@@ -36,15 +36,8 @@
             <%= Html.LabelFor(model => model.NewDoc.Language) %>
         </div>
         <div class="editor-field">
-            <%= Html.TextBoxFor(model => model.NewDoc.Language) %>
+            <%= Html.DropDownListFor(model => model.NewDoc.Language, new SelectList( api.docs.data.Configuration.Languages)) %>
             <%= Html.ValidationMessageFor(model => model.NewDoc.Language) %>
-        </div>
-        <div class="editor-label">
-            <%= Html.LabelFor(model => model.NewDoc.Region) %>
-        </div>
-        <div class="editor-field">
-            <%= Html.TextBoxFor(model => model.NewDoc.Region) %>
-            <%= Html.ValidationMessageFor(model => model.NewDoc.Region) %>
         </div>
         <div class="editor-label">
             <%= Html.LabelFor(model => model.NewDoc.Summary) %>

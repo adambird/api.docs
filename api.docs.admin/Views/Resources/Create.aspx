@@ -26,16 +26,8 @@
                 <%= Html.LabelFor(model => model.ResourceDocs[0].Language) %>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.ResourceDocs[0].Language)%>
+                <%= Html.DropDownListFor(model => model.ResourceDocs[0].Language, new SelectList( api.docs.data.Configuration.Languages))%>
                 <%= Html.ValidationMessageFor(model => model.ResourceDocs[0].Language)%>
-            </div>
-
-             <div class="editor-label">
-                <%= Html.LabelFor(model => model.ResourceDocs[0].Region) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.ResourceDocs[0].Region)%>
-                <%= Html.ValidationMessageFor(model => model.ResourceDocs[0].Region)%>
             </div>
 
             <div class="editor-label">

@@ -26,32 +26,16 @@
                 <%= Html.LabelFor(model => model.Language) %>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Language) %>
+                <%= Html.DropDownListFor(model => model.Language, new SelectList(api.docs.data.Configuration.Languages))%>
                 <%= Html.ValidationMessageFor(model => model.Language) %>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Region) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Region) %>
-                <%= Html.ValidationMessageFor(model => model.Region) %>
             </div>
             
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.Summary) %>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Summary) %>
+                <%= Html.TextAreaFor(model => model.Summary) %>
                 <%= Html.ValidationMessageFor(model => model.Summary) %>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.CultureString) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.CultureString) %>
-                <%= Html.ValidationMessageFor(model => model.CultureString) %>
             </div>
             
             <p>
