@@ -6,12 +6,15 @@ using System.Web.Mvc;
 using api.docs.admin.Models;
 using api.docs.data;
 using api.docs.data.Repository;
+using log4net;
 using Ninject;
 
 namespace api.docs.admin.Controllers
 {
     public class ResourcesController : Controller
     {
+        private static ILog _logger = LogManager.GetLogger(typeof(ResourcesController));
+
         private readonly IResourceRepository _resourceRepository;
 
         [Inject]
@@ -71,8 +74,10 @@ namespace api.docs.admin.Controllers
                     return View(viewModel);
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                _logger.Error("ResourcesController.Create", ex);
+                ModelState.AddModelError("", ex);
                 return View(viewModel);
             }
         }

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using api.docs.admin.Dependencies;
+using log4net;
 using Ninject;
 using Ninject.Modules;
 using Ninject.Web.Mvc;
@@ -14,6 +16,8 @@ namespace api.docs.admin
 
     public class MvcApplication : NinjectHttpApplication
     {
+        private static ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -31,7 +35,11 @@ namespace api.docs.admin
 
         protected override void OnApplicationStarted()
         {
+            _logger.Info("Logging configured");
+
             RegisterRoutes(RouteTable.Routes);
+
+            _logger.Info("Routes registered");
         }
 
         protected override IKernel CreateKernel()
