@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NHibernate;
+using NHibernate.Context;
 using NHibernate.Linq;
 
 namespace api.docs.data.Repository
@@ -9,25 +10,18 @@ namespace api.docs.data.Repository
     public class Repository<T> : IRepository<T>
         where T : Entity, new()
     {
-        private ISession _session;
-
         protected Repository()
         {
         }   
 
         public void Dispose()
         {
-            if (_session != null) _session.Dispose();
-            _session = null;
+
         }
 
         private ISession GetSession()
         {
-            if (_session == null)
-            {
-                _session = ApiDocsDb.SessionFactory.OpenSession();
-            }
-            return _session;
+            return ApiDocsDb.GetCurrentSession();
         }
 
         public T GetById(Guid id)

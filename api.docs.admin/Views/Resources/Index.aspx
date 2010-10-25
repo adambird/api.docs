@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<System.Collections.Generic.IEnumerable<api.docs.admin.Models.ResourceViewModel>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	<%= api.docs.Resources %>
+	<%= Strings.ApplicationTitle %> / <%= Strings.Resources %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -15,5 +15,5 @@
     <%
        }%>
     </ul>
-    <%= Html.ActionLink("New Resource", "Create") %>
+    <%= Html.ActionLink(Strings.NewResource, "Create") %>
 </asp:Content>

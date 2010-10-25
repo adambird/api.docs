@@ -4,6 +4,7 @@ using NHibernate;
 using NHibernate.ByteCode.Castle;
 using NHibernate.Cfg;
 using NHibernate.Cfg.Loquacious;
+using NHibernate.Context;
 using NHibernate.Dialect;
 
 namespace api.docs.data
@@ -27,6 +28,7 @@ namespace api.docs.data
             log4net.Config.XmlConfigurator.Configure();
 
             var nhConfig = new NHibernate.Cfg.Configuration()
+                .CurrentSessionContext<CallSessionContext>()
                 .Proxy(proxy => proxy.ProxyFactoryFactory<ProxyFactoryFactory>())
                 .DataBaseIntegration(db =>
                                          {
@@ -37,12 +39,27 @@ namespace api.docs.data
                 .AddAssembly(Assembly.GetExecutingAssembly());
 
             SessionFactory = nhConfig.BuildSessionFactory();
+
         }
 
         public void Dispose()
         {
         }
 
+        public static ISession GetCurrentSession()
+        {
+            if (CurrentSessionContext.HasBind(SessionFactory))
+            {
+                return SessionFactory.GetCurrentSession();
+            }
+            else
+            {
+                var session = SessionFactory.OpenSession();
+                CurrentSessionContext.Bind(session);
+                return session;
+            }
+
+        }
 
     }
 }

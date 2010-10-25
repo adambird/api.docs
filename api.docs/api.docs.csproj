@@ -79,8 +79,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\EsendexBeak.png" />
+    <Content Include="Content\Images\header_gradient.png" />
+    <Content Include="Content\Images\logowhite.png" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\css\Site.css" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Resources\Details.aspx" />
     <Content Include="Views\Resources\Index.aspx" />
@@ -116,6 +119,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Fonts\museo700.eot" />
+    <None Include="Content\Fonts\Museo700.otf" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
