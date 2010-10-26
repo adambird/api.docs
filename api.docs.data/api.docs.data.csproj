@@ -5,14 +5,13 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6D031736-338C-4C50-AB16-A5072900BE60}</ProjectGuid>
+    <ProjectGuid>{CE7C8715-5A86-44D0-8D17-B15D0DA764B1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>api.docs.data</RootNamespace>
     <AssemblyName>api.docs.data</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\lib\Castle.Core.dll</HintPath>
-    </Reference>
     <Reference Include="log4net">
       <HintPath>..\lib\log4net.dll</HintPath>
     </Reference>
@@ -47,13 +43,14 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiDocsDb.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="ITransactionCoordinator.cs" />
@@ -68,23 +65,17 @@
     <Compile Include="Repository\ResourceRepository.cs" />
     <Compile Include="Resource.cs" />
     <Compile Include="ResourceDoc.cs" />
-    <Compile Include="ApiDocsDb.cs" />
     <Compile Include="TransactionCoordinator.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <EmbeddedResource Include="Map\Resource.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Map\ResourceDoc.hbm.xml" />
-    <Content Include="sql\deltas\001_CreateResourceTables.sql" />
-    <Content Include="sql\deltas\002_AddVersionColumnToResourceTables.sql" />
-    <Content Include="sql\deltas\003_AddedIndexColumnToResourceDocs.sql" />
-    <Content Include="sql\initialise_db.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="sql\deploy.build" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Map\Resource.hbm.xml" />
+    <EmbeddedResource Include="Map\ResourceDoc.hbm.xml" />
+    <Content Include="sql\deltas\001_CreateResourceTables.sql" />
+    <Content Include="sql\initialise_db.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -12,12 +12,9 @@ namespace api.docs.admin.Models
 
         [Required]
         public string Language { get; set; }
-        public string Region { get; set; }
 
         [Required]
         [StringLength(1000)]
         public string Summary { get; set; }
-
-        public string CultureString { get; set; }
     }
 }

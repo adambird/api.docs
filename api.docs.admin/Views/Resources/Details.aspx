@@ -26,7 +26,7 @@
        foreach (var doc in Model.ResourceDocs)
        {%>
        <div>
-        <h4><%= doc.CultureString %></h4>
+        <h4><%= doc.Language %></h4>
         <p>
             <%= doc.Summary %>
         </p>

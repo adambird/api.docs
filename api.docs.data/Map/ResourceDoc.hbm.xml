@@ -4,9 +4,7 @@
     <id name="Id">
       <generator class="guid.comb"/>
     </id>
-    <version name="Version"/>
     <property name="Language" not-null="true"/>
-    <property name="Region"/>
     <property name="Summary"/>
     <many-to-one name="Resource" column="ResourceId" not-null="true"/>
   </class>

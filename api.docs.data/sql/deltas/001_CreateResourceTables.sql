@@ -8,11 +8,10 @@
 CREATE TABLE [ResourceDocs] (
 	Id uniqueidentifier NOT NULL,
 	ResourceId uniqueidentifier NULL,
-	Language varchar(3) NULL,
-	Region varchar(10) NULL,
+	[Language] varchar(3) NULL,
 	Summary nvarchar(1000) NOT NULL,
 	CONSTRAINT PK_ResourceDocs PRIMARY KEY NONCLUSTERED (Id) ,
-	CONSTRAINT UQ_ResourceDocs_Culture UNIQUE (ResourceId, Language, Region)
+	CONSTRAINT UQ_ResourceDocs_Culture UNIQUE (ResourceId, Language)
 )
 
 --//@UNDO

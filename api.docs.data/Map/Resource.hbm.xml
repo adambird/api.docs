@@ -4,7 +4,6 @@
     <id name="Id">
       <generator class="guid.comb"/>
     </id>
-    <version name="Version"/>
     <property name="Name" not-null="true"/>
     <set name="ResourceDocs" cascade="all" inverse="true">
       <key column="ResourceId"/>

@@ -8,7 +8,6 @@ namespace api.docs.data
     public abstract class Entity<TId>
     {
         public virtual TId Id { get; protected set; }
-        public virtual int Version { get; set; }
 
         public override bool Equals(object obj)
         {

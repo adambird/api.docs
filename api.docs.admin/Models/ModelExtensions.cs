@@ -29,7 +29,6 @@ namespace api.docs.admin.Models
         public static void MapOntoModel(this ResourceDocViewModel viewModel, ref ResourceDoc model)
         {
             model.Language = viewModel.Language;
-            model.Region = viewModel.Region;
             model.Summary = viewModel.Summary;
         }
 
@@ -39,9 +38,7 @@ namespace api.docs.admin.Models
                        {
                            Id = model.Id,
                            Language = model.Language,
-                           Region = model.Region,
                            Summary = model.Summary,
-                           CultureString = model.CultureString
                        };
         }
 

@@ -49,14 +49,12 @@ namespace api.docs.data.integrationtest
                                                   new ResourceDoc()
                                                       {
                                                           Language = "en",
-                                                          Region = null,
                                                           Summary = "This is the default English summary"
                                                       },
                                                   new ResourceDoc()
                                                       {
-                                                          Language = "en",
-                                                          Region = "us",
-                                                          Summary = "This is the English US summary"
+                                                          Language = "fr",
+                                                          Summary = "This is the French summary"
                                                       }
                                               }
                                };
@@ -80,7 +78,7 @@ namespace api.docs.data.integrationtest
                     }
                 }
 
-                using (var command = new SqlCommand("SELECT Id, ResourceId, Language, Region, Summary FROM ResourceDocs", connection))
+                using (var command = new SqlCommand("SELECT Id, ResourceId, Language, Summary FROM ResourceDocs", connection))
                 {
                     using (var reader = command.ExecuteReader())
                     {
@@ -91,15 +89,7 @@ namespace api.docs.data.integrationtest
 
                             Assert.AreEqual(resource.Id, reader.GetGuid(1));
                             Assert.AreEqual(docs[i].Language, reader.GetString(2));
-                            if (docs[i].Region == null)
-                            {
-                                Assert.IsTrue(reader.IsDBNull(3));
-                            }
-                            else
-                            {
-                                Assert.AreEqual(docs[i].Region, reader.GetString(3));
-                            }
-                            Assert.AreEqual(docs[i].Summary, reader.GetString(4));
+                            Assert.AreEqual(docs[i].Summary, reader.GetString(3));
                             i++;
                         }
                         Assert.AreEqual(i, resource.ResourceDocs.Count);
@@ -119,14 +109,12 @@ namespace api.docs.data.integrationtest
                                                   new ResourceDoc()
                                                       {
                                                           Language = "en",
-                                                          Region = null,
                                                           Summary = "This is the default English summary"
                                                       },
                                                   new ResourceDoc()
                                                       {
-                                                          Language = "en",
-                                                          Region = "us",
-                                                          Summary = "This is the English US summary"
+                                                          Language = "fr",
+                                                          Summary = "This is the French summary"
                                                       }
                                               }
             };
@@ -147,7 +135,6 @@ namespace api.docs.data.integrationtest
                 for (int i = 0; i < docs.Count; i++)
                 {
                     Assert.AreEqual(docs[i].Language, actualDocs[i].Language);
-                    Assert.AreEqual(docs[i].Region, actualDocs[i].Region);
                     Assert.AreEqual(docs[i].Summary, actualDocs[i].Summary);
                 }
             }
@@ -164,14 +151,12 @@ namespace api.docs.data.integrationtest
                                                   new ResourceDoc()
                                                       {
                                                           Language = "en",
-                                                          Region = null,
                                                           Summary = "This is the default English summary"
                                                       },
                                                   new ResourceDoc()
                                                       {
-                                                          Language = "en",
-                                                          Region = "us",
-                                                          Summary = "This is the English US summary"
+                                                          Language = "fr",
+                                                          Summary = "This is the French summary"
                                                       }
                                               }
             };
@@ -196,7 +181,7 @@ namespace api.docs.data.integrationtest
                     }
                 }
 
-                using (var command = new SqlCommand("SELECT Id, ResourceId, Language, Region, Summary FROM ResourceDocs", connection))
+                using (var command = new SqlCommand("SELECT Id, ResourceId, Language, Summary FROM ResourceDocs", connection))
                 {
                     using (var reader = command.ExecuteReader())
                     {
@@ -218,14 +203,12 @@ namespace api.docs.data.integrationtest
                                                   new ResourceDoc()
                                                       {
                                                           Language = "en",
-                                                          Region = null,
                                                           Summary = "This is the default English summary"
                                                       },
                                                   new ResourceDoc()
                                                       {
-                                                          Language = "en",
-                                                          Region = "us",
-                                                          Summary = "This is the English US summary"
+                                                          Language = "fr",
+                                                          Summary = "This is the French summary"
                                                       }
                                               }
             };
@@ -258,7 +241,7 @@ namespace api.docs.data.integrationtest
                     }
                 }
 
-                using (var command = new SqlCommand("SELECT Id, ResourceId, Language, Region, Summary FROM ResourceDocs", connection))
+                using (var command = new SqlCommand("SELECT Id, ResourceId, Language, Summary FROM ResourceDocs", connection))
                 {
                     using (var reader = command.ExecuteReader())
                     {
@@ -267,15 +250,7 @@ namespace api.docs.data.integrationtest
                         {
                             Assert.AreEqual(resource.Id, reader.GetGuid(1));
                             Assert.AreEqual(docs[i].Language, reader.GetString(2));
-                            if (docs[i].Region == null)
-                            {
-                                Assert.IsTrue(reader.IsDBNull(3));
-                            }
-                            else
-                            {
-                                Assert.AreEqual(docs[i].Region, reader.GetString(3));
-                            }
-                            Assert.AreEqual(docs[i].Summary, reader.GetString(4));
+                            Assert.AreEqual(docs[i].Summary, reader.GetString(3));
                             i++;
                         }
                         Assert.AreEqual(i, resource.ResourceDocs.Count);

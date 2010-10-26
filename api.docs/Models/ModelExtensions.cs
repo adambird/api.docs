@@ -14,8 +14,6 @@ namespace api.docs.Models
             {
                 Id = model.Id,
                 Language = model.Language,
-                Region = model.Region,
-                CultureString = model.CultureString,
                 Summary = model.Summary
             };
         }
