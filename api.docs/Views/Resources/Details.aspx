@@ -22,9 +22,7 @@
 
 %>
         <div id="doc-<%= Html.Encode(doc.Language)%>" <%= style %>>
-            <p>
-                <%= Html.Encode(doc.Summary)%>
-            </p>
+            <%= doc.Summary%>
         </div>
     <%
             }

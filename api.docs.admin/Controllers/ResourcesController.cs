@@ -25,7 +25,7 @@ namespace api.docs.admin.Controllers
         
         //
         // GET: /Resource/
-
+        [HttpGet]
         public ActionResult Index()
         {
             return View(_resourceRepository.GetAll().ToViewModelList());
@@ -34,6 +34,7 @@ namespace api.docs.admin.Controllers
         //
         // GET: /Resource/Details/5
 
+        [HttpGet]
         public ActionResult Details(Guid id)
         {
             return View(_resourceRepository.GetById(id).ToViewModel());
@@ -42,6 +43,7 @@ namespace api.docs.admin.Controllers
         //
         // GET: /Resource/Create
 
+        [HttpGet]
         public ActionResult Create()
         {
             var viewModel = new ResourceViewModel()
@@ -56,6 +58,7 @@ namespace api.docs.admin.Controllers
         // POST: /Resource/Create
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Create(ResourceViewModel viewModel)
         {
             try
@@ -85,6 +88,7 @@ namespace api.docs.admin.Controllers
         //
         // GET: /Resource/Edit/5
  
+        [HttpGet]
         public ActionResult Edit(Guid id)
         {
             return View(_resourceRepository.GetById(id).ToViewModel());
@@ -94,6 +98,7 @@ namespace api.docs.admin.Controllers
         // POST: /Resource/Edit/5
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Edit(ResourceViewModel viewModel)
         {
             try
@@ -120,7 +125,7 @@ namespace api.docs.admin.Controllers
 
         //
         // GET: /Resource/Delete/5
- 
+        [HttpGet]
         public ActionResult Delete(Guid id)
         {
             return View(_resourceRepository.GetById(id).ToViewModel());
@@ -146,6 +151,7 @@ namespace api.docs.admin.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult CreateResourceDoc(ResourceViewModel viewModel)
         {
             //if (ModelState.IsValid)

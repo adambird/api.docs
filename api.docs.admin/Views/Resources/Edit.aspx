@@ -55,10 +55,10 @@
        foreach (var doc in Model.ResourceDocs)
        {%>
        <div>
-        <h4><%= doc.CultureString %></h4>
-        <p>
+        <h4><%= doc.Language %></h4>
+        <div>
             <%= doc.Summary %>
-        </p>
+        </div>
         <p>
             <%= Html.ActionLink("Edit", "Edit", new { controller = "ResourceDocs", id = doc.Id })%> | <%= Html.ActionLink("Delete", "Delete", new { controller = "ResourceDocs", id = doc.Id })%>
         </p>

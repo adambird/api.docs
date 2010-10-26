@@ -18,14 +18,8 @@
         <div class="display-label">Language</div>
         <div class="display-field"><%= Model.Language %></div>
         
-        <div class="display-label">Region</div>
-        <div class="display-field"><%= Model.Region %></div>
-        
         <div class="display-label">Summary</div>
         <div class="display-field"><%= Model.Summary %></div>
-        
-        <div class="display-label">CultureString</div>
-        <div class="display-field"><%= Model.CultureString %></div>
         
     </fieldset>
     <% using (Html.BeginForm()) { %>

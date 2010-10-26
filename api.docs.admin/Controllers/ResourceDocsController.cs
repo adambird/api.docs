@@ -21,7 +21,7 @@ namespace api.docs.admin.Controllers
 
         //
         // GET: /ResourceDocs/
-
+        [HttpGet]
         public ActionResult Index()
         {
             return RedirectToAction("Index", "Resources");
@@ -29,7 +29,7 @@ namespace api.docs.admin.Controllers
 
         //
         // GET: /ResourceDocs/Edit/5
- 
+        [HttpGet]
         public ActionResult Edit(Guid id)
         {
             var resourceDoc = _resourceDocRepository.GetById(id);
@@ -41,6 +41,7 @@ namespace api.docs.admin.Controllers
         // POST: /ResourceDocs/Edit/5
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Edit(ResourceDocViewModel viewModel)
         {
             if (ModelState.IsValid)
@@ -70,7 +71,7 @@ namespace api.docs.admin.Controllers
 
         //
         // GET: /ResourceDocs/Delete/5
- 
+        [HttpGet]
         public ActionResult Delete(Guid id)
         {
             var resourceDoc = _resourceDocRepository.GetById(id);
