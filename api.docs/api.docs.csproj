@@ -97,6 +97,7 @@
     <Content Include="Content\Images\header_gradient.png" />
     <Content Include="Content\Images\htmlGradientBG.png" />
     <Content Include="Content\Images\logowhite.png" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Views\Home\Index.aspx" />
