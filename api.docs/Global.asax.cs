@@ -21,6 +21,7 @@ namespace api.docs
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("Content/{*pathInfo}");
             routes.IgnoreRoute("favicon.ico");
+            routes.IgnoreRoute("Scripts/{*pathInfo}");
 
             routes.MapRoute(
                 "Default", // Route name
