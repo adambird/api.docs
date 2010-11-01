@@ -1,5 +1,6 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 <%@ Import Namespace="api.docs.Controllers" %>
+<%@ Import Namespace="System.Globalization" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -14,11 +15,7 @@
         <h1>
             <a id="A1" href="~/" runat="server"><img id="Img1" src="~/Content/images/EsendexBeak.png" alt="Esendex" runat="server"/></a>
         </h1>
-    </div>
-    <div id="languageSelector">
-        <%
-            Html.RenderPartial("LanguageSelector"); %>
-    </div>     
+    </div>  
     <div id="content" class="contentBlock">
         <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
     </div>
@@ -31,11 +28,29 @@
 </body>
     <script type="text/javascript">
 
-        $(document).ready(displayLanguage('en'));
+        Array.prototype.contains = function (element) {
+            for (var i = 0; i < this.length; i++) {
+                if (this[i] == element) {
+                    return true;
+                }
+                return false;
+            }
+        };
+        
+        var languages = new Array('<%= String.Join("', '", api.docs.data.Configuration.Languages)%>');
+
+        $(document).ready(displayLanguage('<%= CultureInfo.CurrentCulture.TwoLetterISOLanguageName %>'));
 
         function displayLanguage(language) {
             $('.lang').hide();
-            $('.lang.' + language).show();
+
+            var languageToDisplay = '<%= api.docs.data.Configuration.DefaultLanguage %>';
+
+            if (languages.contains(language)) {
+                languageToDisplay = language;
+            }
+
+            $('.lang.' + languageToDisplay).show();
         };
 
     </script>
