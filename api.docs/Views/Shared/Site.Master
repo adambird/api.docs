@@ -15,6 +15,10 @@
             <a id="A1" href="~/" runat="server"><img id="Img1" src="~/Content/images/EsendexBeak.png" alt="Esendex" runat="server"/></a>
         </h1>
     </div>
+    <div id="languageSelector">
+        <%
+            Html.RenderPartial("LanguageSelector"); %>
+    </div>     
     <div id="content" class="contentBlock">
         <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
     </div>
@@ -25,6 +29,16 @@
         <p>&copy;2010 Esendex - <%= string.Format("{0} {1}", assembly.Name, assembly.Version) %></p>
     </div>
 </body>
+    <script type="text/javascript">
+
+        $(document).ready(displayLanguage('en'));
+
+        function displayLanguage(language) {
+            $('.lang').hide();
+            $('.lang.' + language).show();
+        };
+
+    </script>
 <asp:ContentPlaceHolder ID="ScriptContent" runat="server">
 </asp:ContentPlaceHolder>
 </html>

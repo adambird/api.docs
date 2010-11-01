@@ -9,6 +9,9 @@
 //------------------------------------------------------------------------------
 
 namespace api.docs.Localisation {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -36,7 +39,7 @@ namespace api.docs.Localisation {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("api.docs.Resources.Strings", typeof(Strings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("api.docs.Localisation.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,6 +66,42 @@ namespace api.docs.Localisation {
         public static string DocumentationNotAvailable {
             get {
                 return ResourceManager.GetString("DocumentationNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string FieldDescription {
+            get {
+                return ResourceManager.GetString("FieldDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string FieldName {
+            get {
+                return ResourceManager.GetString("FieldName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fields.
+        /// </summary>
+        public static string Fields {
+            get {
+                return ResourceManager.GetString("Fields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string FieldType {
+            get {
+                return ResourceManager.GetString("FieldType", resourceCulture);
             }
         }
         

@@ -6,7 +6,7 @@ using api.docs.data;
 
 namespace api.docs.Models
 {
-    public static class ModelExtensions
+    public static class ResourceModelExtensions
     {
         public static ResourceDocViewModel ToViewModel(this ResourceDoc model)
         {
@@ -41,7 +41,8 @@ namespace api.docs.Models
             {
                 Id = model.Id,
                 Name = model.Name,
-                ResourceDocs = model.ResourceDocs.ToViewModelList()
+                ResourceDocs = model.ResourceDocs.ToViewModelList(),
+                Fields = model.Fields.ToViewModelList()
             };
         }
     }

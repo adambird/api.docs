@@ -7,35 +7,39 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2><%= Html.Encode(Model.Name)%></h2>
-    <div id="languageSelector">
-        <%
-            Html.RenderPartial("LanguageSelector"); %>
-    </div>     
+
     <%
             foreach (var doc in Model.ResourceDocs)
-            {
-                var style = "";
-                if (doc.Language != api.docs.data.Configuration.DefaultLanguage)
-                {
-                    style = "style=\"display:none\"";
-                }
-
-%>
-        <div id="doc-<%= Html.Encode(doc.Language)%>" <%= style %>>
+            {%>
+        <div class="lang <%= Html.Encode(doc.Language)%>">
             <%= doc.Summary%>
         </div>
     <%
             }
     %>
+    <h3><%= Strings.Fields %></h3>
+    <table>
+        <thead>
+            <tr><th><%= Strings.FieldName %></th><th><%= Strings.FieldType %></th><th><%= Strings.FieldDescription %></th></tr>
+        </thead>
+        <tbody>
+<% foreach (var field in Model.Fields)
+   {%>
+            <tr><td><%= Html.Encode(field.Name) %></td><td><%= Html.Encode(field.FieldType) %></td><td>
+            <% foreach (var doc in field.FieldDocs)
+{%>
+        <div class="lang <%= Html.Encode(doc.Language)%>">
+            <%= doc.Description%>
+        </div>
+            <%
+}%>
+            </td></tr>
+<%
+   }%>
+        </tbody>
+    </table>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
-    <script type="text/javascript">
 
-        function displayLanguage(language) {
-            $('div[id^=doc-]').hide();
-            $('div#doc-' + language).show();
-        };
-
-    </script>
 </asp:Content>

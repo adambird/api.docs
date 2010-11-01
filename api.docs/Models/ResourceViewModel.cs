@@ -17,5 +17,8 @@ namespace api.docs.Models
             return ResourceDocs.SingleOrDefault(rd => rd.Language == language) ??
                       ResourceDocs.Single(rd => rd.Language == Configuration.DefaultLanguage);
         }
+
+        public IList<FieldViewModel> Fields { get; set; }
+
     }
 }
