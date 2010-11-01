@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using api.docs.admin.Models;
+using api.docs.admin.Models.Extensions;
 using api.docs.data;
 using api.docs.data.Repository;
 using log4net;
@@ -163,6 +164,41 @@ namespace api.docs.admin.Controllers
                 _resourceRepository.SaveChanges();
 
                 return RedirectToAction("Edit", new { id = viewModel.Id });
+            //}
+            //else
+            //{
+            //    return View("Edit", viewModel);
+            //}
+
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult CreateField(ResourceViewModel viewModel)
+        {
+            //if (ModelState.IsValid)
+            //{
+            var resource = _resourceRepository.GetById(viewModel.Id);
+            var field = new Field()
+                            {
+                                Resource = resource,
+                                Name = viewModel.NewField.Name,
+                                FieldType = viewModel.NewField.FieldType
+                            };
+
+            field.FieldDocs.Add(new FieldDoc()
+                                    {
+                                        Language = Configuration.DefaultLanguage,
+                                        Description = viewModel.NewField.Description,
+                                        Field = field
+                                    });
+
+            resource.Fields.Add(field);
+
+            _resourceRepository.Save(resource);
+            _resourceRepository.SaveChanges();
+
+            return RedirectToAction("Edit", new { id = viewModel.Id });
             //}
             //else
             //{

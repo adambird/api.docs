@@ -73,8 +73,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Extensions\FieldDocExtensions.cs" />
+    <Compile Include="Models\Extensions\FieldExtensions.cs" />
+    <Compile Include="Models\Extensions\ResourceDocExtensions.cs" />
+    <Compile Include="Models\Extensions\ResourceExtensions.cs" />
+    <Compile Include="Models\FieldDocViewModel.cs" />
+    <Compile Include="Models\FieldViewModel.cs" />
     <Compile Include="Models\HomePageViewModel.cs" />
-    <Compile Include="Models\ModelExtensions.cs" />
+    <Compile Include="Models\NewFieldViewModel.cs" />
     <Compile Include="Models\ResourceDocViewModel.cs" />
     <Compile Include="Models\ResourceViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

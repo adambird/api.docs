@@ -5,9 +5,14 @@
       <generator class="guid.comb"/>
     </id>
     <property name="Name" not-null="true"/>
-    <set name="ResourceDocs" cascade="all" inverse="true">
+    <set name="ResourceDocs" cascade="all-delete-orphan" inverse="true">
       <key column="ResourceId"/>
       <one-to-many class="ResourceDoc"/>
     </set>
+    <list name="Fields" cascade="all-delete-orphan">
+      <key column="ResourceId"/>
+      <index column="FieldIndex"/>
+      <one-to-many class="Field"/>
+    </list>
   </class>
 </hibernate-mapping>

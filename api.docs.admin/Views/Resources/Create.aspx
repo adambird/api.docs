@@ -34,7 +34,7 @@
                 <%= Html.LabelFor(model => model.ResourceDocs[0].Summary) %>
             </div>
             <div class="editor-field">
-                <%= Html.TextAreaFor(model => model.ResourceDocs[0].Summary)%>
+                <%= Html.TextAreaFor(model => model.ResourceDocs[0].Summary, new { rows = 10, cols = 60 })%>
                 <%= Html.ValidationMessageFor(model => model.ResourceDocs[0].Summary)%>
             </div>
 

@@ -35,6 +35,10 @@ namespace api.docs.data.integrationtest
                 {
                     command.ExecuteNonQuery();
                 }
+                using (var command = new SqlCommand("TRUNCATE TABLE Fields", connection))
+                {
+                    command.ExecuteNonQuery();
+                }
             }
         }
 
@@ -57,7 +61,24 @@ namespace api.docs.data.integrationtest
                                                           Summary = "This is the French summary"
                                                       }
                                               }
+
                                };
+
+            resource.Fields = new List<Field>()
+                                  {
+                                      new Field()
+                                          {
+                                              Name = "Reference",
+                                              FieldType = "string",
+                                              Resource = resource
+                                          },
+                                      new Field()
+                                          {
+                                              Name = "EndOn",
+                                              FieldType = "datetime",
+                                              Resource = resource
+                                          }
+                                  };
 
             using (var repository = new ResourceRepository())
             {
@@ -93,6 +114,24 @@ namespace api.docs.data.integrationtest
                             i++;
                         }
                         Assert.AreEqual(i, resource.ResourceDocs.Count);
+                    }
+                }
+
+                using (var command = new SqlCommand("SELECT Id, ResourceId, Name, FieldType FROM Fields", connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        int i = 0;
+                        while (reader.Read())
+                        {
+                            var fields = new List<Field>(resource.Fields);
+
+                            Assert.AreEqual(resource.Id, reader.GetGuid(1));
+                            Assert.AreEqual(fields[i].Name, reader.GetString(2));
+                            Assert.AreEqual(fields[i].FieldType, reader.GetString(3));
+                            i++;
+                        }
+                        Assert.AreEqual(i, resource.Fields.Count);
                     }
                 }
             }

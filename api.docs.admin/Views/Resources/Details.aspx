@@ -36,5 +36,23 @@
         </div>
     <%
        }%>
+
+           <h3>Fields</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th><th>Type</th><th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+    <% foreach (var field in Model.Fields)
+       {%>
+        <tr>
+            <td><%=field.Name %></td><td><%=field.FieldType %></td><td><%=field.FieldDocs[0].Description %></td>
+        </tr>
+    <%
+       }%>
+        </tbody>
+    </table>
 </asp:Content>
 

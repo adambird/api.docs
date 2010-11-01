@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="api.docs.data" namespace="api.docs.data">
+  <class name="Field" table="Fields">
+    <id name="Id">
+      <generator class="guid.comb"/>
+    </id>
+    <property name="Name" not-null="true"/>
+    <property name="FieldType" not-null="true"/>
+    <set name="FieldDocs" cascade="all-delete-orphan" inverse="true">
+      <key column="FieldId"/>
+      <one-to-many class="FieldDoc"/>
+    </set>
+    <many-to-one name="Resource" column="ResourceId" not-null="true"/>
+  </class>
+</hibernate-mapping>

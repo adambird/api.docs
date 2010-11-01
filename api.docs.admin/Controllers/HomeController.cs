@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using api.docs.admin.Models;
+using api.docs.admin.Models.Extensions;
 using api.docs.data.Repository;
 using Ninject;
 
