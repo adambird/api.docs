@@ -33,8 +33,8 @@
                 if (this[i] == element) {
                     return true;
                 }
-                return false;
             }
+            return false;
         };
         
         var languages = new Array('<%= String.Join("', '", api.docs.data.Configuration.Languages)%>');
