@@ -47,10 +47,7 @@ namespace api.docs.admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var viewModel = new ResourceViewModel()
-                                {
-                                    ResourceDocs = new List<ResourceDocViewModel>() {new ResourceDocViewModel()}
-                                };
+            var viewModel = new ResourceViewModel();
 
             return View(viewModel);
         } 
@@ -68,6 +65,9 @@ namespace api.docs.admin.Controllers
                 {
                     var model = new Resource();
                     viewModel.MapOntoModel(ref model);
+                    var newDoc = new ResourceDoc();
+                    viewModel.NewDoc.MapOntoModel(ref newDoc);
+                    model.ResourceDocs.Add(newDoc);
                     _resourceRepository.Add(model);
                     _resourceRepository.SaveChanges();
 

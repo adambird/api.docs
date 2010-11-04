@@ -9,6 +9,7 @@ namespace api.docs.admin.Models
     public class ResourceDocViewModel
     {
         public Guid Id { get; set; }
+        public Guid ResourceId { get; set; }
 
         [Required]
         public string Language { get; set; }

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using api.docs.admin.Models;
 using api.docs.admin.Models.Extensions;
+using api.docs.data;
 using api.docs.data.Repository;
 using Ninject;
 
@@ -13,11 +14,13 @@ namespace api.docs.admin.Controllers
     public class ResourceDocsController : Controller
     {
         private readonly IResourceDocRepository _resourceDocRepository;
+        private readonly IResourceRepository _resourceRepository;
 
         [Inject]
-        public ResourceDocsController(IResourceDocRepository resourceDocRepository)
+        public ResourceDocsController(IResourceDocRepository resourceDocRepository, IResourceRepository resourceRepository)
         {
             _resourceDocRepository = resourceDocRepository;
+            _resourceRepository = resourceRepository;
         }
 
         //
@@ -26,6 +29,43 @@ namespace api.docs.admin.Controllers
         public ActionResult Index()
         {
             return RedirectToAction("Index", "Resources");
+        }
+
+        [HttpGet]
+        public ActionResult Create(Guid resourceId, string language)
+        {
+            var viewModel = new ResourceDocViewModel()
+                                {
+                                    ResourceId = resourceId,
+                                    Language = language
+                                };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Create(ResourceDocViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var resource = _resourceRepository.GetById(viewModel.ResourceId);
+                    var resourceDoc = new ResourceDoc()
+                                          {
+                                              Resource = resource
+                                          };
+                    viewModel.MapOntoModel(ref resourceDoc);
+                    _resourceDocRepository.Add(resourceDoc);
+                    _resourceDocRepository.SaveChanges(); 
+                    return RedirectToAction("Details", "Resources", new { id = resource.Id });
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
+            }
+            return View(viewModel);
         }
 
         //

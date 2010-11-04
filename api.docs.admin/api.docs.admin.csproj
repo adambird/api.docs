@@ -95,6 +95,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\ResourceDocs\Create.aspx" />
     <Content Include="Views\ResourceDocs\Delete.aspx" />
     <Content Include="Views\ResourceDocs\Edit.aspx" />
     <Content Include="Views\Resources\Create.aspx" />

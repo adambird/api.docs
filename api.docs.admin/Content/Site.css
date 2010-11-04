@@ -32,3 +32,8 @@ textarea
 	width: 600px;
 	height: 200px;
 }
+
+li.selected	
+{
+	border: 1px solid black;
+}

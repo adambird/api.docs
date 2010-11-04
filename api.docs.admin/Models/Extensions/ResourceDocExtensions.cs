@@ -24,16 +24,9 @@ namespace api.docs.admin.Models.Extensions
             };
         }
 
-        public static IList<ResourceDocViewModel> ToViewModelList(this IEnumerable<ResourceDoc> models)
+        public static IDictionary<string, ResourceDocViewModel> ToViewModelList(this IEnumerable<ResourceDoc> models)
         {
-            if (models == null)
-            {
-                return new List<ResourceDocViewModel>();
-            }
-            else
-            {
-                return models.Select(model => model.ToViewModel()).ToList();
-            }
+            return models == null ? new Dictionary<string, ResourceDocViewModel>() : models.ToDictionary(m => m.Language, m => m.ToViewModel());
         }
     }
 }

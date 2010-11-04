@@ -78,12 +78,12 @@ ul#mainNavigation li a                                   { color: #fff; padding:
 ul#mainNavigation li a:hover                             { color: #be9dc8; border-left-color: #fff; }
 
 /**LANGUAGESELECTFORM**/
-form#languageSelectForm                                  { float: right; color: #fff; }
-form#languageSelectForm a                                { color: #d5bcff; }
-form#languageSelectForm ul                               { overflow: auto; margin-top: 25px; }
-form#languageSelectForm ul li                            { float: left; padding: 0 7px; border-left: 1px solid #fff; }
-form#languageSelectForm ul > li:first-child              { border-left: none; }
-form#languageSelectForm ul li.input                      { font-size: 12px; font-family: Arial, "Helvetica Neue", sans-serif; }
+div#languageSelect                                  { float: right; color: #fff; }
+div#languageSelect a                                { color: #d5bcff; }
+div#languageSelect ul                               { overflow: auto; margin-top: 25px; }
+div#languageSelect ul li                            { float: left; padding: 0 7px; border-left: 1px solid #fff; }
+div#languageSelect ul > li:first-child              { border-left: none; }
+div#languageSelect ul li.input                      { font-size: 12px; font-family: Arial, "Helvetica Neue", sans-serif; }
 
 /**CONTENTBLOCK**/
 div.contentBlock                                         { margin: 15px 0; background: #fff; border: 1px solid #cccccc; padding: 15px; overflow: auto; }

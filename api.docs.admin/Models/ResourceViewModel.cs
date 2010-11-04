@@ -25,17 +25,18 @@ namespace api.docs.admin.Models
         [StringLength(50)]
         public string Name { get; set; }
 
-        public IList<ResourceDocViewModel> ResourceDocs { get; set; }
+        public IDictionary<string, ResourceDocViewModel> ResourceDocs { get; set; }
         public IList<FieldViewModel> Fields { get; set; }
 
         public ResourceDocViewModel NewDoc { get; set; }
         public NewFieldViewModel NewField { get; set; }
 
+
         public ResourceViewModel()
         {
             NewDoc = new ResourceDocViewModel();
             NewField = new NewFieldViewModel();
-            ResourceDocs = new List<ResourceDocViewModel>();
+            ResourceDocs = new Dictionary<string, ResourceDocViewModel>();
             Fields = new List<FieldViewModel>();
         }
     }

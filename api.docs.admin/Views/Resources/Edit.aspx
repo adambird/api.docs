@@ -22,20 +22,29 @@
     <% } %>
 
     <h3>Documentation</h3>
-    <%
-       foreach (var doc in Model.ResourceDocs)
+        <%
+            foreach (var language in api.docs.data.Configuration.Languages)
        {%>
-       <div>
-        <h4><%= doc.Language %></h4>
-        <div>
-            <%= doc.Summary %>
-        </div>
+       <div class="lang <%= language %>">
+       <p>
+       <% if (!Model.ResourceDocs.ContainsKey(language))
+          {%>
+          <%=Html.ActionLink(string.Format("Add {0} documentation", language), "Create", new { controller = "ResourceDocs", resourceId = Model.Id, language}) %>
+       <%
+           }
+          else
+{%>
+            <%=Model.ResourceDocs[language].Summary%>
+        </p>
         <p>
-            <%= Html.ActionLink("Edit", "Edit", new { controller = "ResourceDocs", id = doc.Id })%> | <%= Html.ActionLink("Delete", "Delete", new { controller = "ResourceDocs", id = doc.Id })%>
+            <%=Html.ActionLink("Edit", "Edit",
+                                      new {controller = "ResourceDocs", id = Model.ResourceDocs[language].Id})%> | <%=Html.ActionLink("Delete", "Delete",
+                                      new {controller = "ResourceDocs", id = Model.ResourceDocs[language].Id})%>
+    <%
+}%>
         </p>
         </div>
-    <%
-       }%>
+       <%}%>
        
     <% using (Html.BeginForm("CreateResourceDoc", "Resources", FormMethod.Post, new { id = "createResourceDocForm" }))
        {%>

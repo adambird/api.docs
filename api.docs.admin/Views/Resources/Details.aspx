@@ -6,37 +6,35 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Resource</h2>
+    <h2><%= Model.Name %></h2>  
 
-    <fieldset>
-        <legend>Fields</legend>
-        
-        <div class="display-label">Id</div>
-        <div class="display-field"><%= Model.Id %></div>
-        
-        <div class="display-label">Name</div>
-        <div class="display-field"><%= Model.Name %></div>
-        
-    </fieldset>
-    <p>
-        <%= Html.ActionLink("Edit", "Edit", new { id=Model.Id}) %> |
-        <%= Html.ActionLink("Back to List", "Index") %>
-    </p>
+    <h3>Documentation</h3>
+    <div id="documentation">
         <%
-       foreach (var doc in Model.ResourceDocs)
+            foreach (var language in api.docs.data.Configuration.Languages)
        {%>
-       <div>
-        <h4><%= doc.Language %></h4>
-        <p>
-            <%= doc.Summary %>
+       <div class="lang <%= language %>">
+       <p>
+       <% if (!Model.ResourceDocs.ContainsKey(language))
+          {%>
+          <%=Html.ActionLink(string.Format("Add {0} documentation", language), "Create", new { controller = "ResourceDocs", resourceId = Model.Id, language}) %>
+       <%
+           }
+          else
+{%>
+            <%=Model.ResourceDocs[language].Summary%>
         </p>
         <p>
-            <%= Html.ActionLink("Edit", "Edit", new { controller = "ResourceDocs", id = doc.Id })%> | <%= Html.ActionLink("Delete", "Delete", new { controller = "ResourceDocs", id = doc.Id })%>
+            <%=Html.ActionLink("Edit", "Edit",
+                                      new {controller = "ResourceDocs", id = Model.ResourceDocs[language].Id})%> | <%=Html.ActionLink("Delete", "Delete",
+                                      new {controller = "ResourceDocs", id = Model.ResourceDocs[language].Id})%>
+    <%
+}%>
         </p>
         </div>
     <%
        }%>
-
+       </div>
            <h3>Fields</h3>
     <table>
         <thead>
@@ -48,11 +46,23 @@
     <% foreach (var field in Model.Fields)
        {%>
         <tr>
-            <td><%=field.Name %></td><td><%=field.FieldType %></td><td><%=field.FieldDocs[0].Description %></td>
+            <td><%=field.Name %></td><td><%=field.FieldType %></td><td>
+            <% foreach (var doc in field.FieldDocs)
+{%>
+            <div class="lang <%=doc.Language%>">
+                <%=doc.Description%>
+            </div>
+            <%
+}%>
+            </td>
         </tr>
     <%
        }%>
         </tbody>
     </table>
+    <p>
+        <%= Html.ActionLink("Edit", "Edit", new { id=Model.Id}) %> |
+        <%= Html.ActionLink("Back to List", "Index") %>
+    </p>
 </asp:Content>
 
