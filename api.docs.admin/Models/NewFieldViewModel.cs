@@ -5,7 +5,7 @@ using System.Web;
 
 namespace api.docs.admin.Models
 {
-    public class NewFieldViewModel
+    public class NewFieldViewModel : BaseViewModel
     {
         public Guid ResourceId { get; set; }
         public string Name { get; set; }

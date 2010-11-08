@@ -7,7 +7,9 @@ using api.docs.data;
 
 namespace api.docs.admin.Models
 {
-    public class ResourceViewModel
+    public enum DocumentationStatuses {Present, Missing}
+
+    public class ResourceViewModel : BaseViewModel
     {
         private Guid _id;
 
@@ -31,13 +33,17 @@ namespace api.docs.admin.Models
         public ResourceDocViewModel NewDoc { get; set; }
         public NewFieldViewModel NewField { get; set; }
 
-
         public ResourceViewModel()
         {
             NewDoc = new ResourceDocViewModel();
             NewField = new NewFieldViewModel();
             ResourceDocs = new Dictionary<string, ResourceDocViewModel>();
             Fields = new List<FieldViewModel>();
+        }
+
+        public DocumentationStatuses LanguageStatus(string language)
+        {
+            return ResourceDocs.ContainsKey(language) ? DocumentationStatuses.Present : DocumentationStatuses.Missing;
         }
     }
 }

@@ -13,6 +13,14 @@ namespace api.docs.admin.Models.Extensions
             model.Name = viewModel.Name;
         }
 
+        public static ResourcesViewModel ToViewModel(this IEnumerable<Resource> models)
+        {
+            return new ResourcesViewModel()
+                       {
+                           Resources = models.ToViewModelList()
+                       };
+        }
+
         public static IList<ResourceViewModel> ToViewModelList(this IEnumerable<Resource> models)
         {
             return models.Select(model => model.ToViewModel()).ToList();

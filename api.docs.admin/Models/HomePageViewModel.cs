@@ -5,7 +5,7 @@ using System.Web;
 
 namespace api.docs.admin.Models
 {
-    public class HomePageViewModel
+    public class HomePageViewModel : BaseViewModel
     {
         public IList<ResourceViewModel> Resources { get; set; }
     }

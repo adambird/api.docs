@@ -6,7 +6,7 @@ using System.Web;
 
 namespace api.docs.admin.Models
 {
-    public class ResourceDocViewModel
+    public class ResourceDocViewModel : BaseViewModel
     {
         public Guid Id { get; set; }
         public Guid ResourceId { get; set; }

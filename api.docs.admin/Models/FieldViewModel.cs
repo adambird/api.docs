@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
 
 namespace api.docs.admin.Models
 {
-    public class FieldViewModel
+    public class FieldViewModel : BaseViewModel
     {
         public Guid Id { get; set; }
 
@@ -27,5 +26,9 @@ namespace api.docs.admin.Models
             NewDoc = new FieldDocViewModel();
         }
 
+        public DocumentationStatuses LanguageStatus(string language)
+        {
+            return FieldDocs.FirstOrDefault(fd => fd.Language == language) != null ? DocumentationStatuses.Present : DocumentationStatuses.Missing;
+        }
     }
 }

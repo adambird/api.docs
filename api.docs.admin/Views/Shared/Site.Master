@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<api.docs.admin.Models.BaseViewModel>" %>
 <%@ Import Namespace="System.Globalization" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -12,12 +12,30 @@
 <body>
     <div>
     <h1>API Docs Admin</h1>
-<ul id="languageselector">
-<% foreach (var language in api.docs.data.Configuration.Languages)
+        <div id="languageSelect">
+<% using (Html.BeginForm("ChangeCulture", "Profile"))
    {%>
-       <li id="langswitch-<%= language %>"><a href="#" onclick="displayLanguage('<%= language %>');"><%= language %></a></li>
-   <%}%>
-   </ul>        
+<select id="culture" name="culture">
+<%
+       foreach (var language in api.docs.data.Configuration.Languages)
+       {
+           if (language == Model.UserLanguage)
+           {%>
+       <option value="<%=language%>" selected="selected"><%=Strings.ResourceManager.GetString(language)%></option>     
+   <%
+           }
+           else
+           {%>
+       <option value="<%=language%>"><%=Strings.ResourceManager.GetString(language)%></option>
+<%
+           }
+       }%>
+       </select>
+       <%= Html.Hidden("redirectUrl", Request.Path) %>
+       <input type="submit" value="<%=Strings.Change %>" />
+   <%
+   }%>
+        </div>      
    <asp:ContentPlaceHolder ID="MainContent" runat="server">
         
         </asp:ContentPlaceHolder>
@@ -36,11 +54,10 @@
 
     var languages = new Array('<%= String.Join("', '", api.docs.data.Configuration.Languages)%>');
 
-    $(document).ready(displayLanguage('<%= CultureInfo.CurrentCulture.TwoLetterISOLanguageName %>'));
+    $(document).ready(displayLanguage('<%= Model.UserLanguage %>'));
 
     function displayLanguage(language) {
         $('.lang').hide();
-        $('li[id^=langswitch-]').removeClass('selected');
 
         var languageToDisplay = '<%= api.docs.data.Configuration.DefaultLanguage %>';
 
@@ -49,8 +66,8 @@
         }
 
         $('.lang.' + languageToDisplay).show();
-        $('li[id^=langswitch-' + languageToDisplay + ']').addClass('selected');
     };
+
 
 </script>
 <asp:ContentPlaceHolder ID="ScriptContent" runat="server">

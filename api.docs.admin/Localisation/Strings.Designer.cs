@@ -70,6 +70,42 @@ namespace api.docs.admin.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change.
+        /// </summary>
+        public static string Change {
+            get {
+                return ResourceManager.GetString("Change", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to english.
+        /// </summary>
+        public static string en {
+            get {
+                return ResourceManager.GetString("en", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to español.
+        /// </summary>
+        public static string es {
+            get {
+                return ResourceManager.GetString("es", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to français.
+        /// </summary>
+        public static string fr {
+            get {
+                return ResourceManager.GetString("fr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Resource.
         /// </summary>
         public static string NewResource {

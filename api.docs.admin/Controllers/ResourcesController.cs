@@ -29,7 +29,7 @@ namespace api.docs.admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View(_resourceRepository.GetAll().ToViewModelList());
+            return View(_resourceRepository.GetAll().ToViewModel());
         }
 
         //

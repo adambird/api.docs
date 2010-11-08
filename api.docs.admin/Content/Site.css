@@ -37,3 +37,20 @@ li.selected
 {
 	border: 1px solid black;
 }
+
+span.Missing 
+{
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	background-color: Red;
+	color: White;
+}
+span.Present 
+{
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	background-color: Green;
+	color: White;
+}

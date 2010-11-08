@@ -8,7 +8,14 @@
 
     <h2><%= Model.Name %></h2>  
 
-    <h3>Documentation</h3>
+    <h3>Documentation 
+        <%
+            foreach (var language in api.docs.data.Configuration.Languages)
+            {%>
+            <span class="<%= Model.LanguageStatus(language) %> <%= language %>"><%= language %></span>
+       <%
+            }%>    
+    </h3>
     <div id="documentation">
         <%
             foreach (var language in api.docs.data.Configuration.Languages)
@@ -47,6 +54,12 @@
        {%>
         <tr>
             <td><%=field.Name %></td><td><%=field.FieldType %></td><td>
+            <h4><%
+            foreach (var language in api.docs.data.Configuration.Languages)
+            {%>
+            <span class="<%= field.LanguageStatus(language) %> <%= language %>"><%= language %></span>
+       <%
+            }%></h4>
             <% foreach (var doc in field.FieldDocs)
 {%>
             <div class="lang <%=doc.Language%>">
