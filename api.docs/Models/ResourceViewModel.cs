@@ -6,7 +6,7 @@ using api.docs.data;
 
 namespace api.docs.Models
 {
-    public class ResourceViewModel
+    public class ResourceViewModel : BaseViewModel
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

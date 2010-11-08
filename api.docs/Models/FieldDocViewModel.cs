@@ -5,7 +5,7 @@ using System.Web;
 
 namespace api.docs.Models
 {
-    public class FieldDocViewModel
+    public class FieldDocViewModel : BaseViewModel
     {
         public Guid Id { get; set; }
         public string Language { get; set; }

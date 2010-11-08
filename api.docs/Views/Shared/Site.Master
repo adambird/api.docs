@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<BaseViewModel>" %>
 <%@ Import Namespace="api.docs.Controllers" %>
 <%@ Import Namespace="System.Globalization" %>
 
@@ -16,7 +16,28 @@
             <a id="A1" href="~/" runat="server"><img id="Img1" src="~/Content/images/EsendexBeak.png" alt="Esendex" runat="server"/></a>
         </h1>
         <div id="languageSelect">
-            <%= CultureInfo.CurrentCulture.TwoLetterISOLanguageName %>
+<% using (Html.BeginForm("ChangeCulture", "Profile"))
+   {%>
+<select id="culture" name="culture">
+<%
+       foreach (var language in api.docs.data.Configuration.Languages)
+       {
+           if (language == Model.UserLanguage)
+           {%>
+       <option value="<%=language%>" selected="selected"><%=Strings.ResourceManager.GetString(language)%></option>     
+   <%
+           }
+           else
+           {%>
+       <option value="<%=language%>"><%=Strings.ResourceManager.GetString(language)%></option>
+<%
+           }
+       }%>
+       </select>
+       <%= Html.Hidden("redirectUrl", Request.Path) %>
+       <input type="submit" value="<%=Strings.Change %>" />
+   <%
+   }%>
         </div>
     </div>  
     <div id="content" class="contentBlock">
@@ -42,7 +63,7 @@
         
         var languages = new Array('<%= String.Join("', '", api.docs.data.Configuration.Languages)%>');
 
-        $(document).ready(displayLanguage('<%= CultureInfo.CurrentCulture.TwoLetterISOLanguageName %>'));
+        $(document).ready(displayLanguage('<%= Model.UserLanguage %>'));
 
         function displayLanguage(language) {
             $('.lang').hide();

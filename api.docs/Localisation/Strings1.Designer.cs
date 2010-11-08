@@ -61,11 +61,38 @@ namespace api.docs.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change.
+        /// </summary>
+        public static string Change {
+            get {
+                return ResourceManager.GetString("Change", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry this documentation isn&apos;t available in English..
         /// </summary>
         public static string DocumentationNotAvailable {
             get {
                 return ResourceManager.GetString("DocumentationNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to english.
+        /// </summary>
+        public static string en {
+            get {
+                return ResourceManager.GetString("en", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to español.
+        /// </summary>
+        public static string es {
+            get {
+                return ResourceManager.GetString("es", resourceCulture);
             }
         }
         
@@ -106,7 +133,16 @@ namespace api.docs.Localisation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Resources.
+        ///   Looks up a localized string similar to français.
+        /// </summary>
+        public static string fr {
+            get {
+                return ResourceManager.GetString("fr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to French.
         /// </summary>
         public static string Resources {
             get {

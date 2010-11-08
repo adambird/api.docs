@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ResourcesController.cs" />
     <Compile Include="Dependencies\DataModule.cs" />
     <Compile Include="Global.asax.cs">
@@ -82,6 +83,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Models\BaseViewModel.cs" />
     <Compile Include="Models\FieldDocViewModel.cs" />
     <Compile Include="Models\FieldModelExtensions.cs" />
     <Compile Include="Models\FieldViewModel.cs" />
@@ -103,7 +105,6 @@
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Resources\Details.aspx" />
     <Content Include="Views\Resources\Index.aspx" />
-    <Content Include="Views\Shared\LanguageSelector.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

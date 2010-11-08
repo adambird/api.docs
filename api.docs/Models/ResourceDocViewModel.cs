@@ -5,7 +5,7 @@ using System.Web;
 
 namespace api.docs.Models
 {
-    public class ResourceDocViewModel
+    public class ResourceDocViewModel : BaseViewModel
     {
         public Guid Id { get; set; }
         public string CultureString { get; set; }
